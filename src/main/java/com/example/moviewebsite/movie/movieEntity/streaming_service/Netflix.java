@@ -1,4 +1,4 @@
-package com.example.moviewebsite.movie.movieEntity.streamingService;
+package com.example.moviewebsite.movie.movieEntity.streaming_service;
 
 import com.example.moviewebsite.movie.movieEntity.country.Gb;
 import com.example.moviewebsite.movie.movieEntity.country.Us;

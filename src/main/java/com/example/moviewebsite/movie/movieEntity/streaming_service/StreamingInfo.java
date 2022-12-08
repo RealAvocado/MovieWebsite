@@ -1,4 +1,4 @@
-package com.example.moviewebsite.movie.movieEntity.streamingService;
+package com.example.moviewebsite.movie.movieEntity.streaming_service;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -4,7 +4,7 @@ import com.example.moviewebsite.movie.movieEntity.country.Gb;
 import com.example.moviewebsite.movie.movieEntity.country.Us;
 import com.example.moviewebsite.movie.movieEntity.image.BackdropURLs;
 import com.example.moviewebsite.movie.movieEntity.image.PosterURLs;
-import com.example.moviewebsite.movie.movieEntity.streamingService.StreamingInfo;
+import com.example.moviewebsite.movie.movieEntity.streaming_service.StreamingInfo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -35,7 +35,8 @@ public class Movie {
     @JsonProperty("backdropPath")
     private String backdropPath;
     @JsonProperty("backdropURLs")
-    @Transient
+    @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //@Transient
     private BackdropURLs backdropURLs;
     @JsonProperty("originalTitle")
     private String originalTitle;
@@ -66,7 +67,8 @@ public class Movie {
     @JsonProperty("posterPath")
     private String posterPath;
     @JsonProperty("posterURLs")
-    @Transient
+    //@Transient
+    @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private PosterURLs posterURLs;
     @JsonProperty("age")
     private long age;
@@ -80,10 +82,7 @@ public class Movie {
     private Gb gb;
     @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Us us;
-    @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private BackdropURLs backdrop_URLs;
-    @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private BackdropURLs poster_URLs;
+
     /**
      * No args constructor for use in serialization
      */
