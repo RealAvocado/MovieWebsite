@@ -1,8 +1,7 @@
-package com.example.moviewebsite.movie;
+package com.example.moviewebsite.movie_package.movieEntity.movie;
 
-import com.example.moviewebsite.movie.movieEntity.Movie;
+import com.example.moviewebsite.movie_package.movieEntity.movie.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

@@ -1,10 +1,6 @@
-package com.example.moviewebsite.movie;
+package com.example.moviewebsite.movie_package.movieEntity.movie;
 
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.List;
 
 @Configuration
 public class MovieConfig {

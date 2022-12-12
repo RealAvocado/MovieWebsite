@@ -1,6 +1,6 @@
-package com.example.moviewebsite.movie.movieEntity.image;
+package com.example.moviewebsite.movie_package.movieEntity.image;
 
-import com.example.moviewebsite.movie.movieEntity.Movie;
+import com.example.moviewebsite.movie_package.movieEntity.movie.Movie;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

@@ -1,6 +1,6 @@
-package com.example.moviewebsite.movie.movieEntity.country;
+package com.example.moviewebsite.movie_package.movieEntity.country;
 
-import com.example.moviewebsite.movie.movieEntity.Movie;
+import com.example.moviewebsite.movie_package.movieEntity.movie.Movie;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -17,8 +17,9 @@ import java.io.Serializable;
 })
 @Generated("jsonschema2pojo")
 @Entity
-@Table(name="british_movie")
-public class Gb implements Serializable {
+@Table(name="USA_movie")
+public class Us implements Serializable {
+
     @JsonProperty("link")
     @Id
     private String link;
@@ -43,7 +44,7 @@ public class Gb implements Serializable {
      * No args constructor for use in serialization
      *
      */
-    public Gb() {
+    public Us() {
     }
 
     /**
@@ -52,7 +53,7 @@ public class Gb implements Serializable {
      * @param link
      * @param leaving
      */
-    public Gb(String link, long added, long leaving) {
+    public Us(String link, long added, long leaving) {
         super();
         this.link = link;
         this.added = added;
@@ -69,7 +70,7 @@ public class Gb implements Serializable {
         this.link = link;
     }
 
-    public Gb withLink(String link) {
+    public Us withLink(String link) {
         this.link = link;
         return this;
     }
@@ -84,7 +85,7 @@ public class Gb implements Serializable {
         this.added = added;
     }
 
-    public Gb withAdded(long added) {
+    public Us withAdded(long added) {
         this.added = added;
         return this;
     }
@@ -99,7 +100,7 @@ public class Gb implements Serializable {
         this.leaving = leaving;
     }
 
-    public Gb withLeaving(long leaving) {
+    public Us withLeaving(long leaving) {
         this.leaving = leaving;
         return this;
     }
@@ -127,4 +128,5 @@ public class Gb implements Serializable {
         }
         return sb.toString();
     }
+
 }

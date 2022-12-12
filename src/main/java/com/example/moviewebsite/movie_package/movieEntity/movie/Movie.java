@@ -1,10 +1,10 @@
-package com.example.moviewebsite.movie.movieEntity;
+package com.example.moviewebsite.movie_package.movieEntity.movie;
 
-import com.example.moviewebsite.movie.movieEntity.country.Gb;
-import com.example.moviewebsite.movie.movieEntity.country.Us;
-import com.example.moviewebsite.movie.movieEntity.image.BackdropURLs;
-import com.example.moviewebsite.movie.movieEntity.image.PosterURLs;
-import com.example.moviewebsite.movie.movieEntity.streaming_service.StreamingInfo;
+import com.example.moviewebsite.movie_package.movieEntity.country.Gb;
+import com.example.moviewebsite.movie_package.movieEntity.country.Us;
+import com.example.moviewebsite.movie_package.movieEntity.image.BackdropURLs;
+import com.example.moviewebsite.movie_package.movieEntity.image.PosterURLs;
+import com.example.moviewebsite.movie_package.movieEntity.streaming_service.StreamingInfo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

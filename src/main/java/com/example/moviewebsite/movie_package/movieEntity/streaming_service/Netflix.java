@@ -1,7 +1,7 @@
-package com.example.moviewebsite.movie.movieEntity.streaming_service;
+package com.example.moviewebsite.movie_package.movieEntity.streaming_service;
 
-import com.example.moviewebsite.movie.movieEntity.country.Gb;
-import com.example.moviewebsite.movie.movieEntity.country.Us;
+import com.example.moviewebsite.movie_package.movieEntity.country.Gb;
+import com.example.moviewebsite.movie_package.movieEntity.country.Us;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

@@ -1,6 +1,6 @@
-package com.example.moviewebsite.movie.movieEntity.country;
+package com.example.moviewebsite.movie_package.movieEntity.country;
 
-import com.example.moviewebsite.movie.movieEntity.Movie;
+import com.example.moviewebsite.movie_package.movieEntity.movie.Movie;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -17,9 +17,8 @@ import java.io.Serializable;
 })
 @Generated("jsonschema2pojo")
 @Entity
-@Table(name="USA_movie")
-public class Us implements Serializable {
-
+@Table(name="british_movie")
+public class Gb implements Serializable {
     @JsonProperty("link")
     @Id
     private String link;
@@ -44,7 +43,7 @@ public class Us implements Serializable {
      * No args constructor for use in serialization
      *
      */
-    public Us() {
+    public Gb() {
     }
 
     /**
@@ -53,7 +52,7 @@ public class Us implements Serializable {
      * @param link
      * @param leaving
      */
-    public Us(String link, long added, long leaving) {
+    public Gb(String link, long added, long leaving) {
         super();
         this.link = link;
         this.added = added;
@@ -70,7 +69,7 @@ public class Us implements Serializable {
         this.link = link;
     }
 
-    public Us withLink(String link) {
+    public Gb withLink(String link) {
         this.link = link;
         return this;
     }
@@ -85,7 +84,7 @@ public class Us implements Serializable {
         this.added = added;
     }
 
-    public Us withAdded(long added) {
+    public Gb withAdded(long added) {
         this.added = added;
         return this;
     }
@@ -100,7 +99,7 @@ public class Us implements Serializable {
         this.leaving = leaving;
     }
 
-    public Us withLeaving(long leaving) {
+    public Gb withLeaving(long leaving) {
         this.leaving = leaving;
         return this;
     }
@@ -128,5 +127,4 @@ public class Us implements Serializable {
         }
         return sb.toString();
     }
-
 }
