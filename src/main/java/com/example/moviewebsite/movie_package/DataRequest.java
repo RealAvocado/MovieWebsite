@@ -2,8 +2,8 @@ package com.example.moviewebsite.movie_package;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.example.moviewebsite.movie_package.movieEntity.movie.MovieRepository;
-import com.example.moviewebsite.test.movieEntity.Movie;
+import com.example.moviewebsite.movie_package.objectsFromJson.movie.Movie;
+import com.example.moviewebsite.movie_package.objectsFromJson.movie.MovieRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -26,7 +26,12 @@ public class DataRequest {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://streaming-availability.p.rapidapi.com/search/pro?country=gb&service=netflix&type=movie&order_by=original_title&year_min=1960&year_max=2022&genre=18&page=1&desc=true&language=en&output_language=en")).header("X-RapidAPI-Key", "f96592562cmsh3f7abed7974f7c2p1235dbjsnc0c2ce7a1ead").header("X-RapidAPI-Host", "streaming-availability.p.rapidapi.com").method("GET", HttpRequest.BodyPublishers.noBody()).build();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://streaming-availability.p.rapidapi.com/search/ultra?country=us&services=netflix%2Cprime%2Cdisney&type=movie&order_by=imdb_vote_count&year_min=1960&year_max=2022&page=1&genres_relation=or&desc=true&language=en&min_imdb_vote_count=10000&max_imdb_vote_count=1000000&output_language=en"))
+                .header("X-RapidAPI-Key", "fb39dba226msh5347eb2352d5bc4p15a6e2jsnf95ec99de6bd")
+                .header("X-RapidAPI-Host", "streaming-availability.p.rapidapi.com")
+                .method("GET", HttpRequest.BodyPublishers.noBody())
+                .build();
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         //System.out.println(response.body());
 
@@ -37,13 +42,11 @@ public class DataRequest {
 
         for (int i = 0; i < arr.size(); i++) {
             ObjectMapper mapper = new ObjectMapper();
-            Movie movie = mapper.readValue(arr.getString(i), Movie.class);
-            //movieRepository.save(movie);
             movieList.add(mapper.readValue(arr.getString(i), Movie.class));
         }
 
         for (Movie movie : movieList) {
-            System.out.println("Title: " + movie.getOriginalTitle() + "; poster of 780 size: " + movie.getPosterURLs().get780());
+            System.out.println("Title: " + movie.getOriginalTitle() + "; poster of 780 size: " + movie.getPosterURLs().get780() + "; cast: " + movie.getCast());
             System.out.println();
         }
 
