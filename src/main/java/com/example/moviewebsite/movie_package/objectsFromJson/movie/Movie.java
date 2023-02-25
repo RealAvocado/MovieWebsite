@@ -16,8 +16,8 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"imdbID", "tmdbID", "imdbRating", "imdbVoteCount", "tmdbRating", "backdropPath", "backdropURLs", "originalTitle", "genres", "countries", "year", "runtime", "cast", "significants", "title", "overview", "tagline", "video", "posterPath", "posterURLs", "age", "streamingInfo", "originalLanguage"})
 @Generated("jsonschema2pojo")
-@Entity
-@Table(name = "movie")
+/*@Entity
+@Table(name = "movie")*/
 public class Movie {
 
     @Id
@@ -27,11 +27,11 @@ public class Movie {
     @JsonProperty("tmdbID")
     private String tmdbID;
     @JsonProperty("imdbRating")
-    private long imdbRating;
+    private int imdbRating;
     @JsonProperty("imdbVoteCount")
-    private long imdbVoteCount;
+    private int imdbVoteCount;
     @JsonProperty("tmdbRating")
-    private long tmdbRating;
+    private int tmdbRating;
     @JsonProperty("backdropPath")
     private String backdropPath;
     @JsonProperty("backdropURLs")
@@ -47,9 +47,9 @@ public class Movie {
     @Transient
     private List<String> countries = null;
     @JsonProperty("year")
-    private long year;
+    private int year;
     @JsonProperty("runtime")
-    private long runtime;
+    private int runtime;
     @JsonProperty("cast")
     @Transient
     private List<String> cast = null;
@@ -71,17 +71,17 @@ public class Movie {
     //@OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private PosterURLs posterURLs;
     @JsonProperty("age")
-    private long age;
+    private int age;
     @JsonProperty("streamingInfo")
     @Transient
     private StreamingInfo streamingInfo;
     @JsonProperty("originalLanguage")
     private String originalLanguage;
 
-    @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Gb gb;
-    @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Us us;
+//    @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private Gb gb;
+//    @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private Us us;
 
     /**
      * No args constructor for use in serialization
@@ -114,7 +114,7 @@ public class Movie {
      * @param age
      * @param posterPath
      */
-    public Movie(String imdbID, String tmdbID, long imdbRating, long imdbVoteCount, long tmdbRating, String backdropPath, BackdropURLs backdropURLs, String originalTitle, List<Long> genres, List<String> countries, long year, long runtime, List<String> cast, List<String> significants, String title, String overview, String tagline, String video, String posterPath, PosterURLs posterURLs, long age, StreamingInfo streamingInfo, String originalLanguage) {
+    public Movie(String imdbID, String tmdbID, int imdbRating, int imdbVoteCount, int tmdbRating, String backdropPath, BackdropURLs backdropURLs, String originalTitle, List<Long> genres, List<String> countries, int year, int runtime, List<String> cast, List<String> significants, String title, String overview, String tagline, String video, String posterPath, PosterURLs posterURLs, int age, StreamingInfo streamingInfo, String originalLanguage) {
         super();
         this.imdbID = imdbID;
         this.tmdbID = tmdbID;
@@ -172,46 +172,46 @@ public class Movie {
     }
 
     @JsonProperty("imdbRating")
-    public long getImdbRating() {
+    public int getImdbRating() {
         return imdbRating;
     }
 
     @JsonProperty("imdbRating")
-    public void setImdbRating(long imdbRating) {
+    public void setImdbRating(int imdbRating) {
         this.imdbRating = imdbRating;
     }
 
-    public Movie withImdbRating(long imdbRating) {
+    public Movie withImdbRating(int imdbRating) {
         this.imdbRating = imdbRating;
         return this;
     }
 
     @JsonProperty("imdbVoteCount")
-    public long getImdbVoteCount() {
+    public int getImdbVoteCount() {
         return imdbVoteCount;
     }
 
     @JsonProperty("imdbVoteCount")
-    public void setImdbVoteCount(long imdbVoteCount) {
+    public void setImdbVoteCount(int imdbVoteCount) {
         this.imdbVoteCount = imdbVoteCount;
     }
 
-    public Movie withImdbVoteCount(long imdbVoteCount) {
+    public Movie withImdbVoteCount(int imdbVoteCount) {
         this.imdbVoteCount = imdbVoteCount;
         return this;
     }
 
     @JsonProperty("tmdbRating")
-    public long getTmdbRating() {
+    public int getTmdbRating() {
         return tmdbRating;
     }
 
     @JsonProperty("tmdbRating")
-    public void setTmdbRating(long tmdbRating) {
+    public void setTmdbRating(int tmdbRating) {
         this.tmdbRating = tmdbRating;
     }
 
-    public Movie withTmdbRating(long tmdbRating) {
+    public Movie withTmdbRating(int tmdbRating) {
         this.tmdbRating = tmdbRating;
         return this;
     }
@@ -292,31 +292,31 @@ public class Movie {
     }
 
     @JsonProperty("year")
-    public long getYear() {
+    public int getYear() {
         return year;
     }
 
     @JsonProperty("year")
-    public void setYear(long year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
-    public Movie withYear(long year) {
+    public Movie withYear(int year) {
         this.year = year;
         return this;
     }
 
     @JsonProperty("runtime")
-    public long getRuntime() {
+    public int getRuntime() {
         return runtime;
     }
 
     @JsonProperty("runtime")
-    public void setRuntime(long runtime) {
+    public void setRuntime(int runtime) {
         this.runtime = runtime;
     }
 
-    public Movie withRuntime(long runtime) {
+    public Movie withRuntime(int runtime) {
         this.runtime = runtime;
         return this;
     }
@@ -442,16 +442,16 @@ public class Movie {
     }
 
     @JsonProperty("age")
-    public long getAge() {
+    public int getAge() {
         return age;
     }
 
     @JsonProperty("age")
-    public void setAge(long age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
-    public Movie withAge(long age) {
+    public Movie withAge(int age) {
         this.age = age;
         return this;
     }

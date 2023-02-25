@@ -15,8 +15,8 @@ import javax.persistence.*;
         "leaving"
 })
 @Generated("jsonschema2pojo")
-@Entity
-@Table(name="USA_movie")
+//@Entity
+//@Table(name="USA_movie")
 public class Us {
     @Id
     @SequenceGenerator(
