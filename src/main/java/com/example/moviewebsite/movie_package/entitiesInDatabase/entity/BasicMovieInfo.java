@@ -1,10 +1,11 @@
-package com.example.moviewebsite.movie_package.tables;
+package com.example.moviewebsite.movie_package.entitiesInDatabase.entity;
 
 import javax.persistence.*;
 
 @Entity
 public class BasicMovieInfo {
     @Id
+    @Column(name = "imdbID")
     private String imdbID;
     private String originalTitle;
     private int year;

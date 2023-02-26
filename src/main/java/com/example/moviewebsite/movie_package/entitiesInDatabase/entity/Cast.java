@@ -1,4 +1,4 @@
-package com.example.moviewebsite.movie_package.tables;
+package com.example.moviewebsite.movie_package.entitiesInDatabase.entity;
 
 import javax.persistence.*;
 

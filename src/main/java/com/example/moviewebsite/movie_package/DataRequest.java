@@ -3,7 +3,6 @@ package com.example.moviewebsite.movie_package;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.example.moviewebsite.movie_package.objectsFromJson.movie.Movie;
-import com.example.moviewebsite.movie_package.objectsFromJson.movie.MovieRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -16,13 +15,6 @@ import java.util.List;
 
 public class DataRequest {
     //private static Session movieRepository;
-    private final MovieRepository movieRepository;
-
-    //@Autowired
-
-    public DataRequest(MovieRepository movieRepository) {
-        this.movieRepository = movieRepository;
-    }
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
