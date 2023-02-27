@@ -8,16 +8,19 @@ public class BasicMovieInfo {
     @Column(name = "imdbID")
     private String imdbID;
     private String originalTitle;
+    private String language;
     private int year;
     private String overview;
     private int imdbRating;
 
+
     public BasicMovieInfo() {
     }
 
-    public BasicMovieInfo(String imdbID, String originalTitle, int year, String overview, int imdbRating) {
+    public BasicMovieInfo(String imdbID, String originalTitle, String language, int year, String overview, int imdbRating) {
         this.imdbID = imdbID;
         this.originalTitle = originalTitle;
+        this.language = language;
         this.year = year;
         this.overview = overview;
         this.imdbRating = imdbRating;
@@ -37,6 +40,14 @@ public class BasicMovieInfo {
 
     public void setOriginalTitle(String originalTitle) {
         this.originalTitle = originalTitle;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
     public int getYear() {
@@ -65,6 +76,6 @@ public class BasicMovieInfo {
 
     @Override
     public String toString() {
-        return "BasicMovieInfo{" + "imdbID='" + imdbID + '\'' + ", originalTitle='" + originalTitle + '\'' + ", year=" + year + ", overview='" + overview + '\'' + ", imdbRating=" + imdbRating + '}';
+        return "BasicMovieInfo{" + "imdbID='" + imdbID + '\'' + ", originalTitle='" + originalTitle + '\'' + ", language='" + language + '\'' + ", year=" + year + ", overview='" + overview + '\'' + ", imdbRating=" + imdbRating + '}';
     }
 }
