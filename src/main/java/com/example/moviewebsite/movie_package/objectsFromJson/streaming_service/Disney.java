@@ -78,6 +78,9 @@ public class Disney {
         sb.append('=');
         sb.append(((this.us == null)?"<null>":this.us));
         sb.append(',');
+        sb.append("gb");
+        sb.append('=');
+        sb.append(((this.gb == null)?"<null>":this.gb));
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
         } else {

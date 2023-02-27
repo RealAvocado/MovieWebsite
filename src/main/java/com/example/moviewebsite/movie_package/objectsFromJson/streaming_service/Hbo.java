@@ -14,29 +14,30 @@ import javax.annotation.Generated;
         "gb"
 })
 @Generated("jsonschema2pojo")
-public class Paramount {
+public class Hbo {
     @JsonProperty("us")
     private Us us;
     @JsonProperty("gb")
     private Gb gb;
 
+
     /**
      * No args constructor for use in serialization
      *
      */
-    public Paramount() {
+    public Hbo() {
     }
 
     /**
      *
      * @param us
      */
-    public Paramount(Us us) {
+    public Hbo(Us us) {
         super();
         this.us = us;
     }
 
-    public Paramount(Gb gb) {
+    public Hbo(Gb gb) {
         this.gb = gb;
     }
 
@@ -50,7 +51,7 @@ public class Paramount {
         this.us = us;
     }
 
-    public Paramount withUs(Us us) {
+    public Hbo withUs(Us us) {
         this.us = us;
         return this;
     }
@@ -65,7 +66,7 @@ public class Paramount {
         this.gb = gb;
     }
 
-    public Paramount withGb(Gb gb) {
+    public Hbo withGb(Gb gb) {
         this.gb = gb;
         return this;
     }
@@ -73,7 +74,7 @@ public class Paramount {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Paramount.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(Hbo.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("us");
         sb.append('=');
         sb.append(((this.us == null)?"<null>":this.us));

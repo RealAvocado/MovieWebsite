@@ -31,6 +31,21 @@ public class StreamingInfo {
     @JsonProperty("starz")
     private Starz starz;
 
+    @JsonProperty("hulu")
+    private Hulu hulu;
+
+    @JsonProperty("hbo")
+    private Hbo hbo;
+
+    @JsonProperty("apple")
+    private Apple apple;
+
+    @JsonProperty("showtime")
+    private Showtime showtime;
+
+    @JsonProperty("mubi")
+    private Mubi mubi;
+
     /**
      * No args constructor for use in serialization
      *
@@ -137,6 +152,81 @@ public class StreamingInfo {
         return this;
     }
 
+    @JsonProperty("hulu")
+    public Hulu getHulu() {
+        return hulu;
+    }
+
+    @JsonProperty("hulu")
+    public void setHulu(Hulu hulu) {
+        this.hulu = hulu;
+    }
+
+    public StreamingInfo withHulu(Hulu hulu) {
+        this.hulu = hulu;
+        return this;
+    }
+
+    @JsonProperty("hbo")
+    public Hbo getHbo() {
+        return hbo;
+    }
+
+    @JsonProperty("hbo")
+    public void setHbo(Hbo hbo) {
+        this.hbo = hbo;
+    }
+
+    public StreamingInfo withHbo(Hbo hbo) {
+        this.hbo = hbo;
+        return this;
+    }
+
+    @JsonProperty("apple")
+    public Apple getApple() {
+        return apple;
+    }
+
+    @JsonProperty("apple")
+    public void setApple(Apple apple) {
+        this.apple = apple;
+    }
+
+    public StreamingInfo withApple(Apple apple) {
+        this.apple = apple;
+        return this;
+    }
+
+    @JsonProperty("showtime")
+    public Showtime getShowtime() {
+        return showtime;
+    }
+
+    @JsonProperty("showtime")
+    public void setShowtime(Showtime showtime) {
+        this.showtime = showtime;
+    }
+
+    public StreamingInfo withShowtime(Showtime showtime) {
+        this.showtime = showtime;
+        return this;
+    }
+
+    @JsonProperty("mubi")
+    public Mubi getMubi() {
+        return mubi;
+    }
+
+    @JsonProperty("mubi")
+    public void setMubi(Mubi mubi) {
+        this.mubi = mubi;
+    }
+
+    public StreamingInfo withMubi(Mubi mubi) {
+        this.mubi = mubi;
+        return this;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -164,6 +254,26 @@ public class StreamingInfo {
         sb.append("starz");
         sb.append('=');
         sb.append(((this.starz == null)?"<null>":this.starz));
+        sb.append(',');
+        sb.append("hulu");
+        sb.append('=');
+        sb.append(((this.hulu == null)?"<null>":this.hulu));
+        sb.append(',');
+        sb.append("hbo");
+        sb.append('=');
+        sb.append(((this.hbo == null)?"<null>":this.hbo));
+        sb.append(',');
+        sb.append("apple");
+        sb.append('=');
+        sb.append(((this.apple == null)?"<null>":this.apple));
+        sb.append(',');
+        sb.append("showtime");
+        sb.append('=');
+        sb.append(((this.showtime == null)?"<null>":this.showtime));
+        sb.append(',');
+        sb.append("mubi");
+        sb.append('=');
+        sb.append(((this.mubi == null)?"<null>":this.mubi));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
