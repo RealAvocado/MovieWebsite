@@ -74,7 +74,8 @@ public class Mubi {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Mubi.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        //sb.append(Mubi.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append('[');
         sb.append("us");
         sb.append('=');
         sb.append(((this.us == null)?"<null>":this.us));

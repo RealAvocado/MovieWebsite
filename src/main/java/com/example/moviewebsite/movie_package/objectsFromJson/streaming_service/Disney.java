@@ -73,7 +73,8 @@ public class Disney {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Disney.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        //sb.append(Disney.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append('[');
         sb.append("us");
         sb.append('=');
         sb.append(((this.us == null)?"<null>":this.us));

@@ -5,6 +5,7 @@ import com.example.moviewebsite.movie_package.entitiesInDatabase.service.BasicMo
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -28,7 +29,7 @@ public class BasicMovieInfoController {
     }
 
     @PostMapping
-    public void registerMovieInfo() {
+    public void registerMovieInfo() throws IOException, InterruptedException {
         basicMovieInfoService.addMovieInfo();
     }
 }

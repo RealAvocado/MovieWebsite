@@ -170,7 +170,8 @@ public class PosterURLs {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(PosterURLs.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        //sb.append(PosterURLs.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append('[');
         sb.append("_154");
         sb.append('=');
         sb.append(((this._154 == null)?"<null>":this._154));

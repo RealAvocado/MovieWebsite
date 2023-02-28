@@ -5,7 +5,6 @@ import com.example.moviewebsite.movie_package.objectsFromJson.country.Us;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
 import javax.annotation.Generated;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -14,30 +13,29 @@ import javax.annotation.Generated;
         "gb"
 })
 @Generated("jsonschema2pojo")
-public class Showtime {
+public class Curiosity {
     @JsonProperty("us")
     private Us us;
     @JsonProperty("gb")
     private Gb gb;
 
-
     /**
      * No args constructor for use in serialization
      *
      */
-    public Showtime() {
+    public Curiosity() {
     }
 
     /**
      *
      * @param us
      */
-    public Showtime(Us us) {
+    public Curiosity(Us us) {
         super();
         this.us = us;
     }
 
-    public Showtime(Gb gb) {
+    public Curiosity(Gb gb) {
         this.gb = gb;
     }
 
@@ -51,7 +49,7 @@ public class Showtime {
         this.us = us;
     }
 
-    public Showtime withUs(Us us) {
+    public Curiosity withUs(Us us) {
         this.us = us;
         return this;
     }
@@ -66,7 +64,7 @@ public class Showtime {
         this.gb = gb;
     }
 
-    public Showtime withGb(Gb gb) {
+    public Curiosity withGb(Gb gb) {
         this.gb = gb;
         return this;
     }
@@ -74,7 +72,7 @@ public class Showtime {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        //sb.append(Showtime.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        //sb.append(Curiosity.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append('[');
         sb.append("us");
         sb.append('=');

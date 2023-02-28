@@ -46,6 +46,9 @@ public class StreamingInfo {
     @JsonProperty("mubi")
     private Mubi mubi;
 
+    @JsonProperty("curiosity")
+    private Curiosity curiosity;
+
     /**
      * No args constructor for use in serialization
      *
@@ -53,14 +56,27 @@ public class StreamingInfo {
     public StreamingInfo() {
     }
 
-    /**
-     *
-     * @param netflix
-     */
+    public StreamingInfo(Netflix netflix, Prime prime, Disney disney, Peacock peacock, Paramount paramount, Starz starz, Hulu hulu, Hbo hbo, Apple apple, Showtime showtime, Mubi mubi, Curiosity curiosity) {
+        this.netflix = netflix;
+        this.prime = prime;
+        this.disney = disney;
+        this.peacock = peacock;
+        this.paramount = paramount;
+        this.starz = starz;
+        this.hulu = hulu;
+        this.hbo = hbo;
+        this.apple = apple;
+        this.showtime = showtime;
+        this.mubi = mubi;
+        this.curiosity = curiosity;
+    }
+
+/*
     public StreamingInfo(Netflix netflix) {
         super();
         this.netflix = netflix;
     }
+*/
 
     @JsonProperty("netflix")
     public Netflix getNetflix() {
@@ -227,10 +243,26 @@ public class StreamingInfo {
         return this;
     }
 
+    @JsonProperty("curiosity")
+    public Curiosity getCuriosity() {
+        return curiosity;
+    }
+
+    @JsonProperty("curiosity")
+    public void setCuriosity(Curiosity curiosity) {
+        this.curiosity = curiosity;
+    }
+
+    public StreamingInfo withCuriosity(Curiosity curiosity) {
+        this.curiosity = curiosity;
+        return this;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(StreamingInfo.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        //sb.append(StreamingInfo.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append('[');
         sb.append("netflix");
         sb.append('=');
         sb.append(((this.netflix == null)?"<null>":this.netflix));
@@ -274,6 +306,10 @@ public class StreamingInfo {
         sb.append("mubi");
         sb.append('=');
         sb.append(((this.mubi == null)?"<null>":this.mubi));
+        sb.append(',');
+        sb.append("curiosity");
+        sb.append('=');
+        sb.append(((this.curiosity == null)?"<null>":this.curiosity));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');

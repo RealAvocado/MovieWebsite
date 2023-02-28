@@ -10,20 +10,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.annotation.Generated;
-import javax.persistence.*;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"imdbID", "tmdbID", "imdbRating", "imdbVoteCount", "tmdbRating", "backdropPath", "backdropURLs", "originalTitle", "genres", "countries", "year", "runtime", "cast", "significants", "title", "overview", "tagline", "video", "posterPath", "posterURLs", "age", "streamingInfo", "originalLanguage"})
 @Generated("jsonschema2pojo")
-/*@Entity
-@Table(name = "movie")*/
+
 public class Movie {
 
-    @Id
     @JsonProperty("imdbID")
     private String imdbID;
-
     @JsonProperty("tmdbID")
     private String tmdbID;
     @JsonProperty("imdbRating")
@@ -36,25 +32,25 @@ public class Movie {
     private String backdropPath;
     @JsonProperty("backdropURLs")
     //@OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @Transient
+    //@Transient
     private BackdropURLs backdropURLs;
     @JsonProperty("originalTitle")
     private String originalTitle;
     @JsonProperty("genres")
-    @Transient
+    //@Transient
     private List<Long> genres = null;
     @JsonProperty("countries")
-    @Transient
+    //@Transient
     private List<String> countries = null;
     @JsonProperty("year")
     private int year;
     @JsonProperty("runtime")
     private int runtime;
     @JsonProperty("cast")
-    @Transient
+    //@Transient
     private List<String> cast = null;
     @JsonProperty("significants")
-    @Transient
+    //@Transient
     private List<String> significants = null;
     @JsonProperty("title")
     private String title;
@@ -67,13 +63,13 @@ public class Movie {
     @JsonProperty("posterPath")
     private String posterPath;
     @JsonProperty("posterURLs")
-    @Transient
+    //@Transient
     //@OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private PosterURLs posterURLs;
     @JsonProperty("age")
     private int age;
     @JsonProperty("streamingInfo")
-    @Transient
+    //@Transient
     private StreamingInfo streamingInfo;
     @JsonProperty("originalLanguage")
     private String originalLanguage;
@@ -489,7 +485,8 @@ public class Movie {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Movie.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        //sb.append(Movie.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append('[');
         sb.append("imdbID");
         sb.append('=');
         sb.append(((this.imdbID == null) ? "<null>" : this.imdbID));

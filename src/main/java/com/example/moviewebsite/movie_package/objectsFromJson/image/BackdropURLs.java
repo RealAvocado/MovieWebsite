@@ -110,7 +110,8 @@ public class BackdropURLs {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(BackdropURLs.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        //sb.append(BackdropURLs.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append('[');
         sb.append("_1280");
         sb.append('=');
         sb.append(((this._1280 == null)?"<null>":this._1280));
