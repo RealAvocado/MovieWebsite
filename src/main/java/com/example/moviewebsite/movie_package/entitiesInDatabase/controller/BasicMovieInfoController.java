@@ -28,8 +28,8 @@ public class BasicMovieInfoController {
         return basicMovieInfoService.getMovieInfoByLanguage(language);
     }
 
-    @PostMapping
-    public void registerMovieInfo() throws IOException, InterruptedException {
-        basicMovieInfoService.addMovieInfo();
+    @PostMapping(path = "{totalPages},{country}")
+    public void registerMovieInfo(@PathVariable String totalPages, @PathVariable String country) throws IOException, InterruptedException {
+        basicMovieInfoService.addMovieInfo(totalPages, country);
     }
 }
