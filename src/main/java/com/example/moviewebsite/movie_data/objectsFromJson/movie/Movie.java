@@ -36,7 +36,7 @@ public class Movie {
     private String originalTitle;
     @JsonProperty("genres")
     //@Transient
-    private List<Long> genres = null;
+    private List<Integer> genres = null;
     @JsonProperty("countries")
     //@Transient
     private List<String> countries = null;
@@ -108,7 +108,7 @@ public class Movie {
      * @param age
      * @param posterPath
      */
-    public Movie(String imdbID, String tmdbID, int imdbRating, int imdbVoteCount, int tmdbRating, String backdropPath, BackdropURLs backdropURLs, String originalTitle, List<Long> genres, List<String> countries, int year, int runtime, List<String> cast, List<String> significants, String title, String overview, String tagline, String video, String posterPath, PosterURLs posterURLs, int age, StreamingInfo streamingInfo, String originalLanguage) {
+    public Movie(String imdbID, String tmdbID, int imdbRating, int imdbVoteCount, int tmdbRating, String backdropPath, BackdropURLs backdropURLs, String originalTitle, List<Integer> genres, List<String> countries, int year, int runtime, List<String> cast, List<String> significants, String title, String overview, String tagline, String video, String posterPath, PosterURLs posterURLs, int age, StreamingInfo streamingInfo, String originalLanguage) {
         super();
         this.imdbID = imdbID;
         this.tmdbID = tmdbID;
@@ -256,16 +256,16 @@ public class Movie {
     }
 
     @JsonProperty("genres")
-    public List<Long> getGenres() {
+    public List<Integer> getGenres() {
         return genres;
     }
 
     @JsonProperty("genres")
-    public void setGenres(List<Long> genres) {
+    public void setGenres(List<Integer> genres) {
         this.genres = genres;
     }
 
-    public Movie withGenres(List<Long> genres) {
+    public Movie withGenres(List<Integer> genres) {
         this.genres = genres;
         return this;
     }

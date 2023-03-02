@@ -3,27 +3,27 @@ package com.example.moviewebsite.movie_data.entitiesInDatabase.entity;
 import javax.persistence.*;
 
 @Entity
-public class Genre {
+public class MovieGenrePair {
     @Id
     @SequenceGenerator(name="genre_seq",sequenceName="genre_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="genre_seq")
-    private String auto_id;
+    private int auto_id;
     private String imdbID;
-    private String genre;
+    private int genre; //code
 
-    public Genre() {
+    public MovieGenrePair() {
     }
 
-    public Genre(String imdbID, String genre) {
+    public MovieGenrePair(String imdbID, int genre) {
         this.imdbID = imdbID;
         this.genre = genre;
     }
 
-    public String getAuto_id() {
+    public int getAuto_id() {
         return auto_id;
     }
 
-    public void setAuto_id(String auto_id) {
+    public void setAuto_id(int auto_id) {
         this.auto_id = auto_id;
     }
 
@@ -35,11 +35,11 @@ public class Genre {
         this.imdbID = imdbID;
     }
 
-    public String getGenre() {
+    public int getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(int genre) {
         this.genre = genre;
     }
 

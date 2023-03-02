@@ -3,7 +3,8 @@ package com.example.moviewebsite.movie_data.entitiesInDatabase.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.example.moviewebsite.movie_data.entitiesInDatabase.entity.BasicMovieInfo;
-import com.example.moviewebsite.movie_data.entitiesInDatabase.repository.BasicMovieInfoRepository;
+import com.example.moviewebsite.movie_data.entitiesInDatabase.entity.MovieGenrePair;
+import com.example.moviewebsite.movie_data.entitiesInDatabase.repository.MovieGenrePairRepository;
 import com.example.moviewebsite.movie_data.objectsFromJson.movie.Movie;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,27 +15,24 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BasicMovieInfoService {
-    private final BasicMovieInfoRepository basicMovieInfoRepository;
+public class MovieGenrePairService {
+    private final MovieGenrePairRepository movieGenrePairRepository;
 
     @Autowired
-    public BasicMovieInfoService(BasicMovieInfoRepository basicMovieInfoRepository) {
-        this.basicMovieInfoRepository = basicMovieInfoRepository;
+    public MovieGenrePairService(MovieGenrePairRepository movieGenrePairRepository) {
+        this.movieGenrePairRepository = movieGenrePairRepository;
     }
 
-    public List<BasicMovieInfo> getMovieInfoByTitle(String movieTitle) {
-        return basicMovieInfoRepository.findBasicMovieInfoByOriginalTitle(movieTitle);
+    public List<MovieGenrePair> getMoviesByGenre(int genre) {
+        return movieGenrePairRepository.findMovieGenrePairByGenre(genre);
     }
 
-    public List<BasicMovieInfo> getMovieInfoByLanguage(String language) {
-        return basicMovieInfoRepository.findBasicMovieInfoByLanguage(language);
-    }
-
-    public void addMovieInfo(String country) throws IOException, InterruptedException {
+    public void addMovieGenrePairs(String country) throws IOException, InterruptedException {
         int page = 1;
         int totalPages = 1;
         for (int i = 0; i < totalPages; i++) {
@@ -49,7 +47,7 @@ public class BasicMovieInfoService {
                     .build();
             HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 
-            //get total pages amount
+            //get total pages amount and set loop counts
             if (i == 0){
                 int lastColonIndex = response.body().lastIndexOf(':');
                 totalPages = Integer.parseInt(response.body().substring(lastColonIndex + 1, response.body().length()-1));
@@ -65,19 +63,12 @@ public class BasicMovieInfoService {
                 ObjectMapper mapper = new ObjectMapper();
                 try{
                     Movie movie = mapper.readValue(arr.getString(j), Movie.class);
-                    BasicMovieInfo basicMovieInfo = new BasicMovieInfo(
-                            movie.getImdbID(), movie.getOriginalTitle(), movie.getOriginalLanguage(), movie.getYear(), movie.getOverview(), movie.getImdbRating(),
-                            movie.getBackdropURLs().get1280(), movie.getBackdropURLs().get300(), movie.getBackdropURLs().get780(), movie.getBackdropURLs().getOriginal(),
-                            movie.getPosterURLs().get154(), movie.getPosterURLs().get185(), movie.getPosterURLs().get342(), movie.getPosterURLs().get500(), movie.getPosterURLs().get780(), movie.getPosterURLs().get92(), movie.getPosterURLs().getOriginal(),
-                            (movie.getStreamingInfo().getNetflix() == null)?null:movie.getStreamingInfo().getNetflix().getUs().getLink(),
-                            (movie.getStreamingInfo().getPrime() == null)?null:movie.getStreamingInfo().getPrime().getUs().getLink(),
-                            (movie.getStreamingInfo().getDisney() == null)?null:movie.getStreamingInfo().getDisney().getUs().getLink(),
-                            (movie.getStreamingInfo().getParamount() == null)?null:movie.getStreamingInfo().getParamount().getUs().getLink(),
-                            (movie.getStreamingInfo().getStarz() == null)?null:movie.getStreamingInfo().getStarz().getUs().getLink()
-                            );
-                    Optional<BasicMovieInfo> basicMovieInfoOptional = basicMovieInfoRepository.findBasicMovieInfoByImdbID(basicMovieInfo.getImdbID());
-                    if (basicMovieInfoOptional.isEmpty()){
-                        basicMovieInfoRepository.save(basicMovieInfo);
+                    for (Integer genre:movie.getGenres()) {
+                        MovieGenrePair movieGenrePair = new MovieGenrePair(movie.getImdbID(),genre);
+                        Optional<MovieGenrePair> movieGenrePairOptional = movieGenrePairRepository.findMovieGenrePairByImdbIDAndGenre(movie.getImdbID(),genre);
+                        if (movieGenrePairOptional.isEmpty()){
+                            movieGenrePairRepository.save(movieGenrePair);
+                        }
                     }
                 }catch (Exception e){
                     e.printStackTrace();
