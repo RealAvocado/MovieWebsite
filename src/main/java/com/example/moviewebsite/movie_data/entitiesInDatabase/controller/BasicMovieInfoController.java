@@ -37,4 +37,9 @@ public class BasicMovieInfoController {
     public void deleteMovieInfo(@PathVariable String imdbID){
         basicMovieInfoService.deleteMovieInfo(imdbID);
     }
+
+    @PutMapping(path = "{newTitle},{imdbID}")
+    public void updateMovieName(@PathVariable String newTitle, @PathVariable String imdbID){
+        basicMovieInfoService.updateMovieName(newTitle, imdbID);
+    }
 }

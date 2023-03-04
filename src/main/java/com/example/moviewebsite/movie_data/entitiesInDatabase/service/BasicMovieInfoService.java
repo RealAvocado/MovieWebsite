@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class BasicMovieInfoService {
     private final BasicMovieInfoRepository basicMovieInfoRepository;
 
@@ -89,7 +88,13 @@ public class BasicMovieInfoService {
         }
     }
 
+    @Transactional
     public void deleteMovieInfo(String imdbID) {
         basicMovieInfoRepository.deleteBasicMovieInfoByImdbID(imdbID);
+    }
+
+    @Transactional
+    public void updateMovieName(String newTitle, String imdbID) {
+        basicMovieInfoRepository.updateMovieTitle(newTitle, imdbID);
     }
 }

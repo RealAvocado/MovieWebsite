@@ -1,7 +1,6 @@
 package com.example.moviewebsite.movie_data.entitiesInDatabase.entity;
 
 import com.example.moviewebsite.user_data.entity.CollectionList;
-import org.hibernate.annotations.Cascade;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
@@ -22,7 +21,7 @@ public class BasicMovieInfo {
     private String originalTitle;
     private String language;
     private Integer year;
-    @Nullable
+    @Column(length = 1000)
     private String overview;
     private Integer imdbRating;
 

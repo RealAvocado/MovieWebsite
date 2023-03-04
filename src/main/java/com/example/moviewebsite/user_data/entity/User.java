@@ -1,7 +1,5 @@
 package com.example.moviewebsite.user_data.entity;
 
-import com.example.moviewebsite.movie_data.entitiesInDatabase.entity.MovieGenrePair;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
