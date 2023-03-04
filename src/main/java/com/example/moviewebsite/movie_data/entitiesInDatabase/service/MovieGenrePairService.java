@@ -10,16 +10,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class MovieGenrePairService {
     private final MovieGenrePairRepository movieGenrePairRepository;
 
@@ -68,6 +69,7 @@ public class MovieGenrePairService {
                         Optional<MovieGenrePair> movieGenrePairOptional = movieGenrePairRepository.findMovieGenrePairByImdbIDAndGenre(movie.getImdbID(),genre);
                         if (movieGenrePairOptional.isEmpty()){
                             movieGenrePairRepository.save(movieGenrePair);
+                            //movieGenrePairRepository.insertMovieGenrePair(movie.getImdbID(),genre);
                         }
                     }
                 }catch (Exception e){

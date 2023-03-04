@@ -3,27 +3,34 @@ package com.example.moviewebsite.movie_data.entitiesInDatabase.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "movie_genre_pairing")
 public class MovieGenrePair {
     @Id
     @SequenceGenerator(name="genre_seq",sequenceName="genre_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="genre_seq")
-    private int auto_id;
+    private Integer auto_id;
     private String imdbID;
-    private int genre; //code
+    private Integer genre; //code
+
+    //Reference the primary key of basic_movie_info as the foreign key of this table, also name "imdbID".
+    //"insertable = false, updatable = false" is needed to avoid conflicts between repeated named columns
+    @ManyToOne
+    @JoinColumn(name = "imdbID", insertable = false, updatable = false)
+    private BasicMovieInfo basicMovieInfo;
 
     public MovieGenrePair() {
     }
 
-    public MovieGenrePair(String imdbID, int genre) {
+    public MovieGenrePair(String imdbID, Integer genre) {
         this.imdbID = imdbID;
         this.genre = genre;
     }
 
-    public int getAuto_id() {
+    public Integer getAuto_id() {
         return auto_id;
     }
 
-    public void setAuto_id(int auto_id) {
+    public void setAuto_id(Integer auto_id) {
         this.auto_id = auto_id;
     }
 
@@ -35,11 +42,11 @@ public class MovieGenrePair {
         this.imdbID = imdbID;
     }
 
-    public int getGenre() {
+    public Integer getGenre() {
         return genre;
     }
 
-    public void setGenre(int genre) {
+    public void setGenre(Integer genre) {
         this.genre = genre;
     }
 

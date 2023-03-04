@@ -1,23 +1,30 @@
 package com.example.moviewebsite.user_data.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.example.moviewebsite.movie_data.entitiesInDatabase.entity.MovieGenrePair;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "user")
 public class User {
     @Id
     private String userID;
-    private String name;
+    private String userName;
     private String gender;
     private String email;
     private String password;
 
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "basicMovieInfo")
+    private List<CollectionList> collectionList = new ArrayList<>();
+
     public User() {
     }
 
-    public User(String userID, String name, String gender, String email, String password) {
+    public User(String userID, String userName, String gender, String email, String password) {
         this.userID = userID;
-        this.name = name;
+        this.userName = userName;
         this.gender = gender;
         this.email = email;
         this.password = password;
@@ -31,12 +38,12 @@ public class User {
         this.userID = userID;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getGender() {
@@ -65,6 +72,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "userID='" + userID + '\'' + ", name='" + name + '\'' + ", gender='" + gender + '\'' + ", email='" + email + '\'' + ", password='" + password + '\'' + '}';
+        return "User{" + "userID='" + userID + '\'' + ", userName='" + userName + '\'' + ", gender='" + gender + '\'' + ", email='" + email + '\'' + ", password='" + password + '\'' + '}';
     }
 }

@@ -2,6 +2,9 @@ package com.example.moviewebsite.movie_data.entitiesInDatabase.service;
 
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
-public class CountryService {
+@Transactional
+public class MovieCastPairService {
 }

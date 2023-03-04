@@ -32,4 +32,9 @@ public class BasicMovieInfoController {
     public void registerMovieInfo(@PathVariable String country) throws IOException, InterruptedException {
         basicMovieInfoService.addMovieInfo(country);
     }
+
+    @DeleteMapping(path = "{imdbID}")
+    public void deleteMovieInfo(@PathVariable String imdbID){
+        basicMovieInfoService.deleteMovieInfo(imdbID);
+    }
 }

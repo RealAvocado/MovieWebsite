@@ -1,15 +1,19 @@
 package com.example.moviewebsite.movie_data.entitiesInDatabase.entity;
 
+import com.example.moviewebsite.user_data.entity.CollectionList;
+import org.hibernate.annotations.Cascade;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "basic_movie_info")
 @SecondaryTables({
-        @SecondaryTable(name = "backdrop_secondary", pkJoinColumns = @PrimaryKeyJoinColumn(name = "imdbID")),
-        @SecondaryTable(name = "poster_secondary", pkJoinColumns = @PrimaryKeyJoinColumn(name = "imdbID")),
-        @SecondaryTable(name = "streaming_link_secondary", pkJoinColumns = @PrimaryKeyJoinColumn(name = "imdbID"))
+        @SecondaryTable(name = "backdrop_URLs", pkJoinColumns = @PrimaryKeyJoinColumn(name = "imdbID")),
+        @SecondaryTable(name = "poster_URLs", pkJoinColumns = @PrimaryKeyJoinColumn(name = "imdbID")),
+        @SecondaryTable(name = "streaming_link", pkJoinColumns = @PrimaryKeyJoinColumn(name = "imdbID"))
 })
 public class BasicMovieInfo {
     @Id
@@ -17,52 +21,65 @@ public class BasicMovieInfo {
     private String imdbID;
     private String originalTitle;
     private String language;
-    private int year;
+    private Integer year;
+    @Nullable
     private String overview;
-    private int imdbRating;
+    private Integer imdbRating;
 
-    @Column(table = "backdrop_secondary")
+    @Column(table = "backdrop_URLs")
     private String backdrop_1280;
-    @Column(table = "backdrop_secondary")
+    @Column(table = "backdrop_URLs")
     private String backdrop_300;
-    @Column(table = "backdrop_secondary")
+    @Column(table = "backdrop_URLs")
     private String backdrop_780;
-    @Column(table = "backdrop_secondary")
+    @Column(table = "backdrop_URLs")
     private String backdrop_original;
 
-    @Column(table = "poster_secondary")
+    @Column(table = "poster_URLs")
     private String poster_154;
-    @Column(table = "poster_secondary")
+    @Column(table = "poster_URLs")
     private String poster_185;
-    @Column(table = "poster_secondary")
+    @Column(table = "poster_URLs")
     private String poster_342;
-    @Column(table = "poster_secondary")
+    @Column(table = "poster_URLs")
     private String poster_500;
-    @Column(table = "poster_secondary")
+    @Column(table = "poster_URLs")
     private String poster_780;
-    @Column(table = "poster_secondary")
+    @Column(table = "poster_URLs")
     private String poster_92;
-    @Column(table = "poster_secondary")
+    @Column(table = "poster_URLs")
     private String poster_original;
 
-    @Column(table = "streaming_link_secondary")
+    @Column(table = "streaming_link")
     private String netflixLink;
-    @Column(table = "streaming_link_secondary")
+    @Column(table = "streaming_link")
     private String primeLink;
-    @Column(table = "streaming_link_secondary")
+    @Column(table = "streaming_link")
     private String disneyLink;
-    @Column(table = "streaming_link_secondary")
+    @Column(table = "streaming_link")
     private String paramountLink;
-    @Column(table = "streaming_link_secondary")
+    @Column(table = "streaming_link")
     private String starzLink;
+
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "basicMovieInfo")
+    private List<MovieCastPair> movieCastPairList = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "basicMovieInfo")
+    private List<MovieCountryPair> movieCountryPairList = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "basicMovieInfo")
+    private List<MovieGenrePair> movieGenrePairList = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "basicMovieInfo")
+    private List<CollectionList> collectionList = new ArrayList<>();
 
     public BasicMovieInfo() {
     }
 
-    public BasicMovieInfo(String imdbID, String originalTitle, String language, @Nullable int year, @Nullable String overview, @Nullable int imdbRating,
-                          @Nullable String backdrop_1280, @Nullable String backdrop_300, @Nullable String backdrop_780, @Nullable String backdrop_original,
-                          @Nullable String poster_154, @Nullable String poster_185, @Nullable String poster_342, @Nullable String poster_500, @Nullable String poster_780, @Nullable String poster_92, @Nullable String poster_original,
-                          @Nullable String netflixLink, @Nullable String primeLink, @Nullable String disneyLink, @Nullable String paramountLink, @Nullable String starzLink)
+    public BasicMovieInfo(String imdbID, String originalTitle, String language, Integer year, String overview, Integer imdbRating,
+                          String backdrop_1280, String backdrop_300, String backdrop_780, String backdrop_original,
+                          String poster_154, String poster_185, String poster_342, String poster_500, String poster_780, String poster_92, String poster_original,
+                          String netflixLink, String primeLink, String disneyLink, String paramountLink, String starzLink)
     {
         this.imdbID = imdbID;
         this.originalTitle = originalTitle;
@@ -112,11 +129,11 @@ public class BasicMovieInfo {
         this.language = language;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
@@ -128,11 +145,11 @@ public class BasicMovieInfo {
         this.overview = overview;
     }
 
-    public int getImdbRating() {
+    public Integer getImdbRating() {
         return imdbRating;
     }
 
-    public void setImdbRating(int imdbRating) {
+    public void setImdbRating(Integer imdbRating) {
         this.imdbRating = imdbRating;
     }
 

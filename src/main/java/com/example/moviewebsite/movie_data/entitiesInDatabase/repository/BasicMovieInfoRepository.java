@@ -12,5 +12,7 @@ public interface BasicMovieInfoRepository extends JpaRepository<BasicMovieInfo, 
     List<BasicMovieInfo> findBasicMovieInfoByOriginalTitle(String originalTitle);
     List<BasicMovieInfo> findBasicMovieInfoByLanguage(String language);
 
+    void deleteBasicMovieInfoByImdbID(String imdbID);
+
     Optional<BasicMovieInfo> findBasicMovieInfoByImdbID(String imdbID);
 }

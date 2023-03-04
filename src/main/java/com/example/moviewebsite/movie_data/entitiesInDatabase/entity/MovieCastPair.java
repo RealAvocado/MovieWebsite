@@ -3,27 +3,33 @@ package com.example.moviewebsite.movie_data.entitiesInDatabase.entity;
 import javax.persistence.*;
 
 @Entity
-public class Cast {
+@Table(name = "movie_cast_pairing")
+public class MovieCastPair {
     @Id
     @SequenceGenerator(name="cast_seq",sequenceName="cast_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="cast_seq")
-    private String auto_id;
+    private Integer auto_id;
     private String imdbID;
     private String cast;
 
-    public Cast() {
+    //Reference the primary key of basic_movie_info as the foreign key of this table, also name "imdbID".
+    @ManyToOne
+    @JoinColumn(name = "imdbID", insertable = false, updatable = false)
+    private BasicMovieInfo basicMovieInfo;
+
+    public MovieCastPair() {
     }
 
-    public Cast(String imdbID, String cast) {
+    public MovieCastPair(String imdbID, String cast) {
         this.imdbID = imdbID;
         this.cast = cast;
     }
 
-    public String getAuto_id() {
+    public Integer getAuto_id() {
         return auto_id;
     }
 
-    public void setAuto_id(String auto_id) {
+    public void setAuto_id(Integer auto_id) {
         this.auto_id = auto_id;
     }
 
@@ -42,6 +48,7 @@ public class Cast {
     public void setCast(String cast) {
         this.cast = cast;
     }
+
 
     @Override
     public String toString() {

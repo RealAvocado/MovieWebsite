@@ -3,27 +3,33 @@ package com.example.moviewebsite.movie_data.entitiesInDatabase.entity;
 import javax.persistence.*;
 
 @Entity
-public class Country {
+@Table(name = "movie_country_pairing")
+public class MovieCountryPair {
     @Id
     @SequenceGenerator(name="country_seq",sequenceName="country_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="country_seq")
-    private String auto_id;
+    private Integer auto_id;
     private String imdbID;
     private String country;
 
-    public Country() {
+    //Reference the primary key of basic_movie_info as the foreign key of this table, also name "imdbID".
+    @ManyToOne
+    @JoinColumn(name = "imdbID", insertable = false, updatable = false)
+    private BasicMovieInfo basicMovieInfo;
+
+    public MovieCountryPair() {
     }
 
-    public Country(String imdbID, String country) {
+    public MovieCountryPair(String imdbID, String country) {
         this.imdbID = imdbID;
         this.country = country;
     }
 
-    public String getAuto_id() {
+    public Integer getAuto_id() {
         return auto_id;
     }
 
-    public void setAuto_id(String auto_id) {
+    public void setAuto_id(Integer auto_id) {
         this.auto_id = auto_id;
     }
 
