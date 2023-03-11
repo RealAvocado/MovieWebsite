@@ -5,11 +5,14 @@ import com.alibaba.fastjson.JSONArray;
 import com.example.moviewebsite.movie_data.entitiesInDatabase.entity.BasicMovieInfo;
 import com.example.moviewebsite.movie_data.entitiesInDatabase.repository.BasicMovieInfoRepository;
 import com.example.moviewebsite.movie_data.objectsFromJson.movie.Movie;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -35,7 +38,7 @@ public class BasicMovieInfoService {
         return basicMovieInfoRepository.findBasicMovieInfoByLanguage(language);
     }
 
-    public void addMovieInfo(String country) throws IOException, InterruptedException {
+    public void addMovieInfo(String country) throws Exception {
         int page = 1;
         int totalPages = 1;
         for (int i = 0; i < totalPages; i++) {
@@ -64,28 +67,29 @@ public class BasicMovieInfoService {
             //database operation
             for (int j = 0; j < arr.size(); j++) {
                 ObjectMapper mapper = new ObjectMapper();
-                try{
-                    Movie movie = mapper.readValue(arr.getString(j), Movie.class);
-                    BasicMovieInfo basicMovieInfo = new BasicMovieInfo(
-                            movie.getImdbID(), movie.getOriginalTitle(), movie.getOriginalLanguage(), movie.getYear(), movie.getOverview(), movie.getImdbRating(),
-                            movie.getBackdropURLs().get1280(), movie.getBackdropURLs().get300(), movie.getBackdropURLs().get780(), movie.getBackdropURLs().getOriginal(),
-                            movie.getPosterURLs().get154(), movie.getPosterURLs().get185(), movie.getPosterURLs().get342(), movie.getPosterURLs().get500(), movie.getPosterURLs().get780(), movie.getPosterURLs().get92(), movie.getPosterURLs().getOriginal(),
-                            (movie.getStreamingInfo().getNetflix() == null)?null:movie.getStreamingInfo().getNetflix().getUs().getLink(),
-                            (movie.getStreamingInfo().getPrime() == null)?null:movie.getStreamingInfo().getPrime().getUs().getLink(),
-                            (movie.getStreamingInfo().getDisney() == null)?null:movie.getStreamingInfo().getDisney().getUs().getLink(),
-                            (movie.getStreamingInfo().getParamount() == null)?null:movie.getStreamingInfo().getParamount().getUs().getLink(),
-                            (movie.getStreamingInfo().getStarz() == null)?null:movie.getStreamingInfo().getStarz().getUs().getLink()
-                            );
-                    Optional<BasicMovieInfo> basicMovieInfoOptional = basicMovieInfoRepository.findBasicMovieInfoByImdbID(basicMovieInfo.getImdbID());
-                    if (basicMovieInfoOptional.isEmpty()){
-                        basicMovieInfoRepository.save(basicMovieInfo);
-                    }
-                }catch (Exception e){
-                    e.printStackTrace();
+                Movie movie = mapper.readValue(arr.getString(j), Movie.class);
+                BasicMovieInfo basicMovieInfo = new BasicMovieInfo(
+                        movie.getImdbID(), movie.getOriginalTitle(), movie.getOriginalLanguage(), movie.getYear(), movie.getOverview(), movie.getImdbRating(),
+                        movie.getBackdropURLs().get1280(), movie.getBackdropURLs().get300(), movie.getBackdropURLs().get780(), movie.getBackdropURLs().getOriginal(),
+                        movie.getPosterURLs().get154(), movie.getPosterURLs().get185(), movie.getPosterURLs().get342(), movie.getPosterURLs().get500(), movie.getPosterURLs().get780(), movie.getPosterURLs().get92(), movie.getPosterURLs().getOriginal(),
+                        (movie.getStreamingInfo().getNetflix() == null)?null:movie.getStreamingInfo().getNetflix().getUs().getLink(),
+                        (movie.getStreamingInfo().getPrime() == null)?null:movie.getStreamingInfo().getPrime().getUs().getLink(),
+                        (movie.getStreamingInfo().getDisney() == null)?null:movie.getStreamingInfo().getDisney().getUs().getLink(),
+                        (movie.getStreamingInfo().getParamount() == null)?null:movie.getStreamingInfo().getParamount().getUs().getLink(),
+                        (movie.getStreamingInfo().getStarz() == null)?null:movie.getStreamingInfo().getStarz().getUs().getLink()
+                );
+                Optional<BasicMovieInfo> basicMovieInfoOptional = basicMovieInfoRepository.findBasicMovieInfoByImdbID(basicMovieInfo.getImdbID());
+                if (basicMovieInfoOptional.isEmpty()){
+                    saveMovieInfo(basicMovieInfo);
                 }
             }
             page++;
         }
+    }
+
+    @Transactional
+    public void saveMovieInfo(BasicMovieInfo basicMovieInfo){
+        basicMovieInfoRepository.save(basicMovieInfo);
     }
 
     @Transactional

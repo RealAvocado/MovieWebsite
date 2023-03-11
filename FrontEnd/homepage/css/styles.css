@@ -1,0 +1,66 @@
+/**header**/
+.navbar-brand h1 { /* title name */
+  font-family: 'Oxygen', sans-serif;
+  color: #000000;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #222;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: .75;
+}
+
+#search-bar, #search-button {
+  margin-top: 8px;
+}
+
+#nav-list {
+  text-align: center;
+  display: block;
+  magin: 0 auto;
+  font-family: 'Georgia', Serif;
+}
+/**end header**/
+
+/*------------------MAIN CONTENT-------------------*/
+#main-content{
+  font-family: 'Georgia', Serif;
+  font-size: 22px;
+}
+
+/**genre**/
+#main-content button {
+  font-size: 18px;
+}
+
+/*#genre-subtitle, #year-subtitle, #country-text, #language-text {
+  font-size: 22px;
+}*/
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#release-year .btn-group {
+  margin-bottom: 20px;
+}
+
+#genre div, #release-year div {
+  padding: 8px;
+}
+
+#filter-bar select, #filter-bar input {
+  width: 180px;
+  padding: 6px;
+  font-size: 18px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+#filter-bar input {
+  padding: 3px;
+}
+

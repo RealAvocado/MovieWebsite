@@ -29,26 +29,20 @@ public class Movie {
     @JsonProperty("backdropPath")
     private String backdropPath;
     @JsonProperty("backdropURLs")
-    //@OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    //@Transient
     private BackdropURLs backdropURLs;
     @JsonProperty("originalTitle")
     private String originalTitle;
     @JsonProperty("genres")
-    //@Transient
     private List<Integer> genres = null;
     @JsonProperty("countries")
-    //@Transient
     private List<String> countries = null;
     @JsonProperty("year")
     private int year;
     @JsonProperty("runtime")
     private int runtime;
     @JsonProperty("cast")
-    //@Transient
     private List<String> cast = null;
     @JsonProperty("significants")
-    //@Transient
     private List<String> significants = null;
     @JsonProperty("title")
     private String title;
@@ -61,21 +55,13 @@ public class Movie {
     @JsonProperty("posterPath")
     private String posterPath;
     @JsonProperty("posterURLs")
-    //@Transient
-    //@OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private PosterURLs posterURLs;
     @JsonProperty("age")
     private int age;
     @JsonProperty("streamingInfo")
-    //@Transient
     private StreamingInfo streamingInfo;
     @JsonProperty("originalLanguage")
     private String originalLanguage;
-
-//    @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private Gb gb;
-//    @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private Us us;
 
     /**
      * No args constructor for use in serialization

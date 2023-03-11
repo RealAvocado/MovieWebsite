@@ -2,6 +2,7 @@ package com.example.moviewebsite.movie_data.entitiesInDatabase.controller;
 
 import com.example.moviewebsite.movie_data.entitiesInDatabase.entity.BasicMovieInfo;
 import com.example.moviewebsite.movie_data.entitiesInDatabase.service.BasicMovieInfoService;
+import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,8 +30,12 @@ public class BasicMovieInfoController {
     }
 
     @PostMapping(path = "{country}")
-    public void registerMovieInfo(@PathVariable String country) throws IOException, InterruptedException {
-        basicMovieInfoService.addMovieInfo(country);
+    public void registerMovieInfo(@PathVariable String country) {
+        try {
+            basicMovieInfoService.addMovieInfo(country);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @DeleteMapping(path = "{imdbID}")
