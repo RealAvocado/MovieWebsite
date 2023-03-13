@@ -1,8 +1,6 @@
 package com.example.moviewebsite.movie_data.entitiesInDatabase.entity;
 
 import com.example.moviewebsite.user_data.entity.CollectionList;
-import org.springframework.lang.Nullable;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;

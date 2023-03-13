@@ -41,7 +41,7 @@
               <button class="btn btn-outline-success" type="submit">Search</button>
             </li>
 
-            <li class="visible-xs active">
+            <li class="visible-xs">
               <a href="index.html">
                 <br class="hidden-xs"> Home</a>
             </li>
@@ -50,7 +50,7 @@
               <a href="watchlish.html" class="btn btn-outline-success" role="button">WatchList</a>
             </li>
 
-            <li>
+            <li class="active">
               <a href="signin.html" class="btn btn-outline-success" role="button">Sign In</a>
             </li>
           </ul><!-- #nav-list -->
@@ -59,21 +59,46 @@
   	  </nav>
   	</header>
 
-    <div id="main-content" class="container">
-      <div id="sign-up-block" class="col-md-6 col-sm-6 col-xs-6 col-xxs-12">
-        <div id="google-btn">
-          <button type="button" class="btn btn-secondary">
-            <img id="google-icon" src="image/google-icon-2.png"> Sign In with Google
-          </button>
+    <div id="signin-main-content" class="container">
+      <div id= "whole-login-block" >
+        <div id="sign-up-block" class="col-md-6 col-sm-6 col-xs-12 col-xxs-12">
+          <div id="google-btn">
+            <button type="button" class="btn btn-secondary">
+              <img id="google-icon" src="image/google-icon-2.png"> Sign In with Google
+            </button>
+          </div>
+
+          <div id="email-btn">
+            <button type="button" class="btn btn-secondary">
+              <span class="glyphicon glyphicon-envelope"></span> Sign Up with Email
+            </button>
+          </div>
         </div>
 
-        <div id="email-btn">
-          <button type="button" class="btn btn-secondary">
-            <span class="glyphicon glyphicon-envelope"></span> Sign Up with Email
-          </button>
-        </div>
+        <div class="vertical-divider hidden-xs"></div>
 
+        <div id="account-input-block" class="col-md-6 col-sm-6 col-xs-12 col-xxs-12">
+          <form>
+            <!-- <label for="streaming">Choose a service:</label> -->
+            <div id="email-input">
+              <input type="email" placeholder="Email">
+            </div>
+
+            <div id="password-input">
+              <input type="password" placeholder="Password">
+            </div>
+
+            <button id="signin-btn" class="btn btn-primary" type="submit">Sign In</button>
+          </form>
+
+          <div id="forgot-password">
+            <a is="local-link"  href="resetPassword.html">Forgot Password?</a>
+          </div>
+          
+
+        </div>
       </div>
+      
     </div>
 
 

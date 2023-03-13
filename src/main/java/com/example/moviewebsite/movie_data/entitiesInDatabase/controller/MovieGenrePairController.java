@@ -2,6 +2,7 @@ package com.example.moviewebsite.movie_data.entitiesInDatabase.controller;
 
 import com.example.moviewebsite.movie_data.entitiesInDatabase.entity.MovieGenrePair;
 import com.example.moviewebsite.movie_data.entitiesInDatabase.service.MovieGenrePairService;
+import com.example.moviewebsite.movie_data.objectsFromJson.movie.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +24,8 @@ public class MovieGenrePairController {
         return movieGenrePairService.getMoviesByGenre(genre);
     }
 
-    @PostMapping(path = "{country}")
-    public void registerMovieGenrePairs(@PathVariable String country) throws IOException, InterruptedException {
-        movieGenrePairService.addMovieGenrePairs(country);
-    }
+//    @PostMapping
+//    public void registerMovieGenrePairs(Movie movie) {
+//        movieGenrePairService.insertMovieGenrePair(movie);
+//    }
 }

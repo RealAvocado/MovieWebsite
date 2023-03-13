@@ -5,15 +5,12 @@ import com.alibaba.fastjson.JSONArray;
 import com.example.moviewebsite.movie_data.entitiesInDatabase.entity.BasicMovieInfo;
 import com.example.moviewebsite.movie_data.entitiesInDatabase.repository.BasicMovieInfoRepository;
 import com.example.moviewebsite.movie_data.objectsFromJson.movie.Movie;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -25,9 +22,17 @@ import java.util.Optional;
 public class BasicMovieInfoService {
     private final BasicMovieInfoRepository basicMovieInfoRepository;
 
+    //external service
+    private final MovieGenrePairService movieGenrePairService;
+    private final MovieCountryPairService movieCountryPairService;
+    private final MovieCastPairService movieCastPairService;
+
     @Autowired
-    public BasicMovieInfoService(BasicMovieInfoRepository basicMovieInfoRepository) {
+    public BasicMovieInfoService(BasicMovieInfoRepository basicMovieInfoRepository, MovieGenrePairService movieGenrePairService, MovieCountryPairService movieCountryPairService, MovieCastPairService movieCastPairService) {
         this.basicMovieInfoRepository = basicMovieInfoRepository;
+        this.movieGenrePairService = movieGenrePairService;
+        this.movieCountryPairService = movieCountryPairService;
+        this.movieCastPairService = movieCastPairService;
     }
 
     public List<BasicMovieInfo> getMovieInfoByTitle(String movieTitle) {
@@ -38,7 +43,7 @@ public class BasicMovieInfoService {
         return basicMovieInfoRepository.findBasicMovieInfoByLanguage(language);
     }
 
-    public void addMovieInfo(String country) throws Exception {
+    public void addAllMovieInfo(String country) throws Exception {
         int page = 1;
         int totalPages = 1;
         for (int i = 0; i < totalPages; i++) {
@@ -68,6 +73,8 @@ public class BasicMovieInfoService {
             for (int j = 0; j < arr.size(); j++) {
                 ObjectMapper mapper = new ObjectMapper();
                 Movie movie = mapper.readValue(arr.getString(j), Movie.class);
+
+                //save BasicMovieInfo
                 BasicMovieInfo basicMovieInfo = new BasicMovieInfo(
                         movie.getImdbID(), movie.getOriginalTitle(), movie.getOriginalLanguage(), movie.getYear(), movie.getOverview(), movie.getImdbRating(),
                         movie.getBackdropURLs().get1280(), movie.getBackdropURLs().get300(), movie.getBackdropURLs().get780(), movie.getBackdropURLs().getOriginal(),
@@ -82,6 +89,12 @@ public class BasicMovieInfoService {
                 if (basicMovieInfoOptional.isEmpty()){
                     saveMovieInfo(basicMovieInfo);
                 }
+                //save MovieGenrePair
+                movieGenrePairService.insertMovieGenrePairFromOneMovie(movie);
+                //save MovieCountryPair
+                movieCountryPairService.insertMovieCountryPairFromOneMovie(movie);
+                //save MovieCastPair
+                movieCastPairService.insertMovieCastPairFromOneMovie(movie);
             }
             page++;
         }
