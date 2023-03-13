@@ -1,3 +1,5 @@
+/*------------------Home Page-------------------*/
+
 /**header**/
 .navbar-brand h1 { /* title name */
   font-family: 'Oxygen', sans-serif;
@@ -23,7 +25,7 @@
 }
 /**end header**/
 
-/*------------------MAIN CONTENT-------------------*/
+/* main content */
 #main-content{
   font-family: 'Georgia', Serif;
   font-size: 22px;
@@ -34,11 +36,7 @@
   font-size: 18px;
 }
 
-/*#genre-subtitle, #year-subtitle, #country-text, #language-text {
-  font-size: 22px;
-}*/
-
-.btn-group {
+.btn-group, #get-movie-btn {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -63,4 +61,76 @@
 #filter-bar input {
   padding: 3px;
 }
+
+#get-movie-btn button{
+  margin-top: 20px;
+  margin-bottom: 50px;
+  width: 300px;
+}
+
+/*end main content*/
+
+/********** Extra small devices only **********/
+@media (max-width: 767px) {
+
+  #main-content{
+    font-size: 20px;
+  }
+
+  #main-content button {
+    font-size: 15px;
+  }
+
+  #filter-bar {
+    margin-left: 30px;
+  }
+
+  #filter-bar select, #filter-bar input {
+    width: 150px;
+    font-size: 15px;
+  }
+
+}
+
+/********** Super extra small devices Only :-) (e.g., iPhone 4) **********/
+@media (max-width: 479px) {
+  #filter-bar {
+    margin-left: 0px;
+  }
+}
+
+/*------------------End Home Page-------------------*/
+
+
+/*------------------Sign In Page-------------------*/
+#google-btn button, #email-btn button {
+  margin-left: 100px;
+  width: 250px;
+  height: 40px;
+}
+
+#email-btn {
+  margin-top: 20px;
+}
+
+#sign-up-block {
+  margin-top: 200px;
+}
+
+#google-icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 30px;
+  margin-bottom: 1px;
+}
+
+.glyphicon-envelope {
+  width: 25px;
+  height: 25px;
+  margin-right: 30px;
+  margin-top: 3px;
+}
+
+/*------------------End Sign In Page-------------------*/
+
 
