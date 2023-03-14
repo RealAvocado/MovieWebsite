@@ -1,21 +1,22 @@
 package com.example.moviewebsite.movie_data.objectsFromJson.streaming_service;
 
 import com.example.moviewebsite.movie_data.objectsFromJson.country.Country;
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.annotation.Generated;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Generated("jsonschema2pojo")
-public class Netflix {
 
-    @JsonAlias({"ar","at","au","be","br","ca","ch","cl","co","cz","de","dk","ec","ee","es","fi","fr","gb","gr","hu","id","ie","in","it","jp","kr","lt","mx","my","nl","no","nz","pe","ph","pl","pt","ro","se","sg","th","tr","us","za","hr","az","bg","cy","hk","is","il","md","mk","rs","ua","ae","vn","pa"})
+@Generated("jsonschema2pojo")
+public class Crave {
+    @JsonProperty("ca")
     private Country country;
 
-    public Netflix() {
+    public Crave() {
     }
 
-    public Netflix(Country country) {
+    public Crave(Country country) {
         this.country = country;
     }
 
@@ -29,6 +30,6 @@ public class Netflix {
 
     @Override
     public String toString() {
-        return "Netflix{" + "country=" + country + '}';
+        return "Crave{" + "country=" + country + '}';
     }
 }

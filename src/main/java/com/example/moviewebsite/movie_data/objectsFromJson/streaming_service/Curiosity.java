@@ -1,91 +1,34 @@
 package com.example.moviewebsite.movie_data.objectsFromJson.streaming_service;
 
-import com.example.moviewebsite.movie_data.objectsFromJson.country.Gb;
-import com.example.moviewebsite.movie_data.objectsFromJson.country.Us;
+import com.example.moviewebsite.movie_data.objectsFromJson.country.Country;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import javax.annotation.Generated;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "us",
-        "gb"
-})
 @Generated("jsonschema2pojo")
 public class Curiosity {
-    @JsonProperty("us")
-    private Us us;
-    @JsonProperty("gb")
-    private Gb gb;
+    @JsonAlias({"gb","de","dk","be","es","ch","cz","ee","ro","rs","it","no","ie","pt","pl","hr","at","ru","us","tr","ua","gr","bg","fi","mk","th","nl","cy","ca","fr","il","is","hk","vn","jp","az","mx","in","nz","ae","za","br","se","au","ph","cl","pa","ar","sg","ec","co","hu","id","kr","lt","my","pe"})
+    private Country country;
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
     public Curiosity() {
     }
 
-    /**
-     *
-     * @param us
-     */
-    public Curiosity(Us us) {
-        super();
-        this.us = us;
+    public Curiosity(Country country) {
+        this.country = country;
     }
 
-    public Curiosity(Gb gb) {
-        this.gb = gb;
+    public Country getCountry() {
+        return country;
     }
 
-    @JsonProperty("us")
-    public Us getUs() {
-        return us;
-    }
-
-    @JsonProperty("us")
-    public void setUs(Us us) {
-        this.us = us;
-    }
-
-    public Curiosity withUs(Us us) {
-        this.us = us;
-        return this;
-    }
-
-    @JsonProperty("gb")
-    public Gb getGb() {
-        return gb;
-    }
-
-    @JsonProperty("gb")
-    public void setGb(Gb gb) {
-        this.gb = gb;
-    }
-
-    public Curiosity withGb(Gb gb) {
-        this.gb = gb;
-        return this;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        //sb.append(Curiosity.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append('[');
-        sb.append("us");
-        sb.append('=');
-        sb.append(((this.us == null)?"<null>":this.us));
-        sb.append(',');
-        sb.append("gb");
-        sb.append('=');
-        sb.append(((this.gb == null)?"<null>":this.gb));
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
+        return "Curiosity{" + "country=" + country + '}';
     }
 }

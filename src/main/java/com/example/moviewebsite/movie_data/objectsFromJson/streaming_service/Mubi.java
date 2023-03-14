@@ -1,93 +1,33 @@
 package com.example.moviewebsite.movie_data.objectsFromJson.streaming_service;
 
-import com.example.moviewebsite.movie_data.objectsFromJson.country.Gb;
-import com.example.moviewebsite.movie_data.objectsFromJson.country.Us;
+import com.example.moviewebsite.movie_data.objectsFromJson.country.Country;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
 import javax.annotation.Generated;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "us",
-        "gb"
-})
 @Generated("jsonschema2pojo")
 public class Mubi {
-    @JsonProperty("us")
-    private Us us;
-    @JsonProperty("gb")
-    private Gb gb;
+    @JsonAlias({"ch","il","ru","be","es","at","mk","pl","md","ua","rs","se","jp","ee","ca","cy","ro","bg","dk","fi","nl","fr","az","gb","no","gr","de","hk","us","it","ae","sg","ie","vn","pa","za","cl","au","nz","tr","ar","th","in","br","ph","mx","hr","ec","co","hu","id","kr","lt","my","pe"})
+    private Country country;
 
-
-    /**
-     * No args constructor for use in serialization
-     *
-     */
     public Mubi() {
     }
 
-    /**
-     *
-     * @param us
-     */
-    public Mubi(Us us) {
-        super();
-        this.us = us;
+    public Mubi(Country country) {
+        this.country = country;
     }
 
-    public Mubi(Gb gb) {
-        this.gb = gb;
+    public Country getCountry() {
+        return country;
     }
 
-    @JsonProperty("us")
-    public Us getUs() {
-        return us;
-    }
-
-    @JsonProperty("us")
-    public void setUs(Us us) {
-        this.us = us;
-    }
-
-    public Mubi withUs(Us us) {
-        this.us = us;
-        return this;
-    }
-
-    @JsonProperty("gb")
-    public Gb getGb() {
-        return gb;
-    }
-
-    @JsonProperty("gb")
-    public void setGb(Gb gb) {
-        this.gb = gb;
-    }
-
-    public Mubi withGb(Gb gb) {
-        this.gb = gb;
-        return this;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        //sb.append(Mubi.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append('[');
-        sb.append("us");
-        sb.append('=');
-        sb.append(((this.us == null)?"<null>":this.us));
-        sb.append(',');
-        sb.append("gb");
-        sb.append('=');
-        sb.append(((this.gb == null)?"<null>":this.gb));
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
+        return "Mubi{" + "country=" + country + '}';
     }
 }

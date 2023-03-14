@@ -132,6 +132,7 @@
   margin-top: 20px;
 }
 
+
 #google-icon {
   width: 25px;
   height: 25px;
@@ -159,6 +160,7 @@
   margin-left: -3px;
   top: 250px;
 }
+
 
 /********** Small devices only **********/
 @media (min-width: 768px) and (max-width: 991px) {

@@ -1,93 +1,34 @@
 package com.example.moviewebsite.movie_data.objectsFromJson.streaming_service;
 
-import com.example.moviewebsite.movie_data.objectsFromJson.country.Gb;
-import com.example.moviewebsite.movie_data.objectsFromJson.country.Us;
+import com.example.moviewebsite.movie_data.objectsFromJson.country.Country;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.annotation.Generated;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "us",
-        "gb"
-})
 @Generated("jsonschema2pojo")
 public class Apple {
-    @JsonProperty("us")
-    private Us us;
-    @JsonProperty("gb")
-    private Gb gb;
+    @JsonAlias({"ie","es","nl","gb","pl","ch","dk","se","no","it","md","in","cz","gr","ua","ca","pt","mx","ru","bg","cy","fi","be","ae","at","ee","th","de","az","fr","br","vn","sg","us","jp","il","hk","za","pa","au","ph","cl","ar","nz","ec","co","hu","id","kr","lt","my","pe"})
+    private Country country;
 
-
-    /**
-     * No args constructor for use in serialization
-     *
-     */
     public Apple() {
     }
 
-    /**
-     *
-     * @param us
-     */
-    public Apple(Us us) {
-        super();
-        this.us = us;
+    public Apple(Country country) {
+        this.country = country;
     }
 
-    public Apple(Gb gb) {
-        this.gb = gb;
+    public Country getCountry() {
+        return country;
     }
 
-    @JsonProperty("us")
-    public Us getUs() {
-        return us;
-    }
-
-    @JsonProperty("us")
-    public void setUs(Us us) {
-        this.us = us;
-    }
-
-    public Apple withUs(Us us) {
-        this.us = us;
-        return this;
-    }
-
-    @JsonProperty("gb")
-    public Gb getGb() {
-        return gb;
-    }
-
-    @JsonProperty("gb")
-    public void setGb(Gb gb) {
-        this.gb = gb;
-    }
-
-    public Apple withGb(Gb gb) {
-        this.gb = gb;
-        return this;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        //sb.append(Apple.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append('[');
-        sb.append("us");
-        sb.append('=');
-        sb.append(((this.us == null)?"<null>":this.us));
-        sb.append(',');
-        sb.append("gb");
-        sb.append('=');
-        sb.append(((this.gb == null)?"<null>":this.gb));
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
+        return "Apple{" + "country=" + country + '}';
     }
 }

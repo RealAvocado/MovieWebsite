@@ -49,6 +49,12 @@ public class StreamingInfo {
     @JsonProperty("curiosity")
     private Curiosity curiosity;
 
+    @JsonProperty("all4")
+    private All4 all4;
+
+    @JsonProperty("crave")
+    private Crave crave;
+
     /**
      * No args constructor for use in serialization
      *
@@ -56,7 +62,7 @@ public class StreamingInfo {
     public StreamingInfo() {
     }
 
-    public StreamingInfo(Netflix netflix, Prime prime, Disney disney, Peacock peacock, Paramount paramount, Starz starz, Hulu hulu, Hbo hbo, Apple apple, Showtime showtime, Mubi mubi, Curiosity curiosity) {
+    public StreamingInfo(Netflix netflix, Prime prime, Disney disney, Peacock peacock, Paramount paramount, Starz starz, Hulu hulu, Hbo hbo, Apple apple, Showtime showtime, Mubi mubi, Curiosity curiosity, All4 all4, Crave crave) {
         this.netflix = netflix;
         this.prime = prime;
         this.disney = disney;
@@ -69,14 +75,10 @@ public class StreamingInfo {
         this.showtime = showtime;
         this.mubi = mubi;
         this.curiosity = curiosity;
+        this.all4 = all4;
+        this.crave = crave;
     }
 
-/*
-    public StreamingInfo(Netflix netflix) {
-        super();
-        this.netflix = netflix;
-    }
-*/
 
     @JsonProperty("netflix")
     public Netflix getNetflix() {

@@ -43,13 +43,13 @@ public class BasicMovieInfoService {
         return basicMovieInfoRepository.findBasicMovieInfoByLanguage(language);
     }
 
-    public void addAllMovieInfo(String country) throws Exception {
+    public void addMovieInfoByCountry(String country) throws Exception {
         int page = 1;
-        int totalPages = 1;
+        int totalPages = 5;
         for (int i = 0; i < totalPages; i++) {
             String uri = "https://streaming-availability.p.rapidapi.com/search/ultra?country=" + country +
-                    "&services=netflix%2Cprime%2Cdisney%2Cstarz&type=movie&order_by=imdb_vote_count&page=" + page +
-                    "&desc=true&language=en&output_language=en";
+                    "&services=netflix%2Cprime%2Cdisney%2Cstarz&type=movie&order_by=imdb_rating&page=" + page +
+                    "&desc=true&output_language=en";
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(uri))
                     .header("X-RapidAPI-Key", "fb39dba226msh5347eb2352d5bc4p15a6e2jsnf95ec99de6bd")
@@ -71,32 +71,43 @@ public class BasicMovieInfoService {
 
             //database operation
             for (int j = 0; j < arr.size(); j++) {
-                ObjectMapper mapper = new ObjectMapper();
-                Movie movie = mapper.readValue(arr.getString(j), Movie.class);
-
-                //save BasicMovieInfo
-                BasicMovieInfo basicMovieInfo = new BasicMovieInfo(
-                        movie.getImdbID(), movie.getOriginalTitle(), movie.getOriginalLanguage(), movie.getYear(), movie.getOverview(), movie.getImdbRating(),
-                        movie.getBackdropURLs().get1280(), movie.getBackdropURLs().get300(), movie.getBackdropURLs().get780(), movie.getBackdropURLs().getOriginal(),
-                        movie.getPosterURLs().get154(), movie.getPosterURLs().get185(), movie.getPosterURLs().get342(), movie.getPosterURLs().get500(), movie.getPosterURLs().get780(), movie.getPosterURLs().get92(), movie.getPosterURLs().getOriginal(),
-                        (movie.getStreamingInfo().getNetflix() == null)?null:movie.getStreamingInfo().getNetflix().getUs().getLink(),
-                        (movie.getStreamingInfo().getPrime() == null)?null:movie.getStreamingInfo().getPrime().getUs().getLink(),
-                        (movie.getStreamingInfo().getDisney() == null)?null:movie.getStreamingInfo().getDisney().getUs().getLink(),
-                        (movie.getStreamingInfo().getParamount() == null)?null:movie.getStreamingInfo().getParamount().getUs().getLink(),
-                        (movie.getStreamingInfo().getStarz() == null)?null:movie.getStreamingInfo().getStarz().getUs().getLink()
-                );
-                Optional<BasicMovieInfo> basicMovieInfoOptional = basicMovieInfoRepository.findBasicMovieInfoByImdbID(basicMovieInfo.getImdbID());
-                if (basicMovieInfoOptional.isEmpty()){
-                    saveMovieInfo(basicMovieInfo);
+                try {
+                    ObjectMapper mapper = new ObjectMapper();
+                    Movie movie = mapper.readValue(arr.getString(j), Movie.class);
+                    //save BasicMovieInfo
+                    BasicMovieInfo basicMovieInfo = new BasicMovieInfo(
+                            movie.getImdbID(), movie.getOriginalTitle(), movie.getOriginalLanguage(), movie.getYear(), movie.getOverview(), movie.getImdbRating(),
+                            movie.getBackdropURLs().get1280(), movie.getBackdropURLs().get300(), movie.getBackdropURLs().get780(), movie.getBackdropURLs().getOriginal(),
+                            movie.getPosterURLs().get154(), movie.getPosterURLs().get185(), movie.getPosterURLs().get342(), movie.getPosterURLs().get500(), movie.getPosterURLs().get780(), movie.getPosterURLs().get92(), movie.getPosterURLs().getOriginal(),
+                            (movie.getStreamingInfo().getNetflix() == null)?null:movie.getStreamingInfo().getNetflix().getCountry().getLink(),
+                            (movie.getStreamingInfo().getPrime() == null)?null:movie.getStreamingInfo().getPrime().getCountry().getLink(),
+                            (movie.getStreamingInfo().getDisney() == null)?null:movie.getStreamingInfo().getDisney().getCountry().getLink(),
+                            (movie.getStreamingInfo().getParamount() == null)?null:movie.getStreamingInfo().getParamount().getCountry().getLink(),
+                            (movie.getStreamingInfo().getStarz() == null)?null:movie.getStreamingInfo().getStarz().getCountry().getLink()
+                    );
+                    Optional<BasicMovieInfo> basicMovieInfoOptional = basicMovieInfoRepository.findBasicMovieInfoByImdbID(basicMovieInfo.getImdbID());
+                    if (basicMovieInfoOptional.isEmpty()){
+                        saveMovieInfo(basicMovieInfo);
+                    }
+                    //save MovieGenrePair
+                    movieGenrePairService.insertMovieGenrePairFromOneMovie(movie);
+                    //save MovieCountryPair
+                    movieCountryPairService.insertMovieCountryPairFromOneMovie(movie);
+                    //save MovieCastPair
+                    movieCastPairService.insertMovieCastPairFromOneMovie(movie);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                //save MovieGenrePair
-                movieGenrePairService.insertMovieGenrePairFromOneMovie(movie);
-                //save MovieCountryPair
-                movieCountryPairService.insertMovieCountryPairFromOneMovie(movie);
-                //save MovieCastPair
-                movieCastPairService.insertMovieCastPairFromOneMovie(movie);
+
             }
             page++;
+        }
+    }
+
+    public void addAllMovies() throws Exception {
+        String[] countryArr = {"ar", "au", "at", "az", "be", "br", "bg", "ca", "cl", "co", "hr", "cy", "cz", "dk", "ec", "ee", "fl", "fr", "de", "gr", "hk", "hu", "is", "in", "id", "ie", "il", "it", "jp", "lt", "my", "mx", "md", "nl", "nz", "mk", "no", "pa", "pe", "ph", "pl", "pt", "ro", "ru", "rs", "sg", "za", "kr", "es", "se", "ch", "th", "tr", "ua", "ae", "gb", "us", "vn"};
+        for (String country : countryArr) {
+            addMovieInfoByCountry(country);
         }
     }
 

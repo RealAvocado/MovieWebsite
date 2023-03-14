@@ -28,21 +28,30 @@ public class BasicMovieInfoController {
     }
 
     @PostMapping(path = "{country}")
-    public void registerAllMovieInfo(@PathVariable String country) {
+    public void registerMovieInfoByCountry(@PathVariable String country) {
         try {
-            basicMovieInfoService.addAllMovieInfo(country);
-        }catch (Exception e){
+            basicMovieInfoService.addMovieInfoByCountry(country);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @PostMapping(path = "all")
+    public void registerAllMovieInfo() {
+        try {
+            basicMovieInfoService.addAllMovies();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @DeleteMapping(path = "{imdbID}")
-    public void deleteMovieInfo(@PathVariable String imdbID){
+    public void deleteMovieInfo(@PathVariable String imdbID) {
         basicMovieInfoService.deleteMovieInfo(imdbID);
     }
 
     @PutMapping(path = "{newTitle},{imdbID}")
-    public void updateMovieName(@PathVariable String newTitle, @PathVariable String imdbID){
+    public void updateMovieName(@PathVariable String newTitle, @PathVariable String imdbID) {
         basicMovieInfoService.updateMovieName(newTitle, imdbID);
     }
 }
