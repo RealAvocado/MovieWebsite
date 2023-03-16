@@ -24,13 +24,15 @@ public class MovieCountryPairService {
         return movieCountryPairRepository.findMovieCountryPairByCountry(country);
     }
 
-    public void insertMovieCountryPairFromOneMovie(Movie movie){
-        for (String country : movie.getCountries()) {
-            MovieCountryPair movieCountryPair = new MovieCountryPair(movie.getImdbID(), country);
-            Optional<MovieCountryPair> movieCountryPairOptional = movieCountryPairRepository.findMovieCountryPairByCountryAndImdbID(country, movie.getImdbID());
-            if (movieCountryPairOptional.isEmpty()) {
+    @Transactional
+    public void insertMovieCountryPairFromOneMovie(Movie movie) {
+        Optional<MovieCountryPair> movieCountryPairOptional = movieCountryPairRepository.findMovieCountryPairByImdbID(movie.getImdbID());
+        if (movieCountryPairOptional.isEmpty()) {
+            for (String country : movie.getCountries()) {
+                MovieCountryPair movieCountryPair = new MovieCountryPair(movie.getImdbID(), country);
                 movieCountryPairRepository.save(movieCountryPair);
             }
         }
+
     }
 }

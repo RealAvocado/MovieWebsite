@@ -19,5 +19,6 @@ public interface MovieGenrePairRepository extends JpaRepository<MovieGenrePair, 
     @Query(value = "insert into movie_genre_pairing (imdbID, genre) values (imdbID, genre)",nativeQuery = true)
     void insertMovieGenrePair(@Param("imdbID") String imdbID, @Param("genre") int genre);
 
+    Optional<MovieGenrePair> findMovieGenrePairByImdbID(String imdbID);
     Optional<MovieGenrePair> findMovieGenrePairByImdbIDAndGenre(String imdbID, int genre);
 }

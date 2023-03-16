@@ -36,6 +36,15 @@ public class BasicMovieInfoController {
         }
     }
 
+    @PostMapping(path = "test/{country}")
+    public void registerMovieInfoByCountryTest(@PathVariable String country) {
+        try {
+            basicMovieInfoService.addMovieInfoByCountryTest(country);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @PostMapping(path = "all")
     public void registerAllMovieInfo() {
         try {

@@ -25,11 +25,12 @@ public class MovieCastPairService {
         return movieCastPairRepository.findMovieCastPairByCast(cast);
     }
 
-    public void insertMovieCastPairFromOneMovie(Movie movie){
-        for (String cast : movie.getCast()) {
-            MovieCastPair movieCastPair = new MovieCastPair(movie.getImdbID(), cast);
-            Optional<MovieCastPair> movieCastPairOptional = movieCastPairRepository.findMovieCountryPairByCastAndImdbID(cast, movie.getImdbID());
-            if (movieCastPairOptional.isEmpty()) {
+    @Transactional
+    public void insertMovieCastPairFromOneMovie(Movie movie) {
+        Optional<MovieCastPair> movieCastPairOptional = movieCastPairRepository.findMovieCountryPairByImdbID(movie.getImdbID());
+        if (movieCastPairOptional.isEmpty()) {
+            for (String cast : movie.getCast()) {
+                MovieCastPair movieCastPair = new MovieCastPair(movie.getImdbID(), cast);
                 movieCastPairRepository.save(movieCastPair);
             }
         }

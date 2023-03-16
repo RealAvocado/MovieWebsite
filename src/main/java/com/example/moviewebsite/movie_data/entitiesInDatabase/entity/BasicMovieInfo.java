@@ -57,6 +57,24 @@ public class BasicMovieInfo {
     private String paramountLink;
     @Column(table = "streaming_link")
     private String starzLink;
+    @Column(table = "streaming_link")
+    private String peacockLink;
+    @Column(table = "streaming_link")
+    private String huluLink;
+    @Column(table = "streaming_link")
+    private String hboLink;
+    @Column(table = "streaming_link")
+    private String appleLink;
+    @Column(table = "streaming_link")
+    private String showtimeLink;
+    @Column(table = "streaming_link")
+    private String mubiLink;
+    @Column(table = "streaming_link")
+    private String curiosityLink;
+    @Column(table = "streaming_link")
+    private String all4Link;
+    @Column(table = "streaming_link")
+    private String craveLink;
 
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "basicMovieInfo")
     private List<MovieCastPair> movieCastPairList = new ArrayList<>();
@@ -76,8 +94,7 @@ public class BasicMovieInfo {
     public BasicMovieInfo(String imdbID, String originalTitle, String language, Integer year, String overview, Integer imdbRating,
                           String backdrop_1280, String backdrop_300, String backdrop_780, String backdrop_original,
                           String poster_154, String poster_185, String poster_342, String poster_500, String poster_780, String poster_92, String poster_original,
-                          String netflixLink, String primeLink, String disneyLink, String paramountLink, String starzLink)
-    {
+                          String netflixLink, String primeLink, String disneyLink, String paramountLink, String starzLink, String peacockLink, String huluLink, String hboLink, String appleLink, String showtimeLink, String mubiLink, String curiosityLink, String all4Link, String craveLink) {
         this.imdbID = imdbID;
         this.originalTitle = originalTitle;
         this.language = language;
@@ -100,6 +117,15 @@ public class BasicMovieInfo {
         this.disneyLink = disneyLink;
         this.paramountLink = paramountLink;
         this.starzLink = starzLink;
+        this.peacockLink = peacockLink;
+        this.huluLink = huluLink;
+        this.hboLink = hboLink;
+        this.appleLink = appleLink;
+        this.showtimeLink = showtimeLink;
+        this.mubiLink = mubiLink;
+        this.curiosityLink = curiosityLink;
+        this.all4Link = all4Link;
+        this.craveLink = craveLink;
     }
 
     public String getImdbID() {
@@ -278,30 +304,111 @@ public class BasicMovieInfo {
         this.starzLink = starzLink;
     }
 
+    public String getPeacockLink() {
+        return peacockLink;
+    }
+
+    public void setPeacockLink(String peacockLink) {
+        this.peacockLink = peacockLink;
+    }
+
+    public String getHuluLink() {
+        return huluLink;
+    }
+
+    public void setHuluLink(String huluLink) {
+        this.huluLink = huluLink;
+    }
+
+    public String getHboLink() {
+        return hboLink;
+    }
+
+    public void setHboLink(String hboLink) {
+        this.hboLink = hboLink;
+    }
+
+    public String getAppleLink() {
+        return appleLink;
+    }
+
+    public void setAppleLink(String appleLink) {
+        this.appleLink = appleLink;
+    }
+
+    public String getShowtimeLink() {
+        return showtimeLink;
+    }
+
+    public void setShowtimeLink(String showtimeLink) {
+        this.showtimeLink = showtimeLink;
+    }
+
+    public String getMubiLink() {
+        return mubiLink;
+    }
+
+    public void setMubiLink(String mubiLink) {
+        this.mubiLink = mubiLink;
+    }
+
+    public String getCuriosityLink() {
+        return curiosityLink;
+    }
+
+    public void setCuriosityLink(String curiosityLink) {
+        this.curiosityLink = curiosityLink;
+    }
+
+    public String getAll4Link() {
+        return all4Link;
+    }
+
+    public void setAll4Link(String all4Link) {
+        this.all4Link = all4Link;
+    }
+
+    public String getCraveLink() {
+        return craveLink;
+    }
+
+    public void setCraveLink(String craveLink) {
+        this.craveLink = craveLink;
+    }
+
     @Override
     public String toString() {
-        return "BasicMovieInfo{" + "imdbID='" +
-                imdbID + '\'' + ", originalTitle='" +
-                originalTitle + '\'' + ", language='" +
-                language + '\'' + ", year=" +
-                year + ", overview='" +
-                overview + '\'' + ", imdbRating=" +
-                imdbRating + ", backdrop_1280='" +
-                backdrop_1280 + '\'' + ", backdrop_300='" +
-                backdrop_300 + '\'' + ", backdrop_780='" +
-                backdrop_780 + '\'' + ", backdrop_original='" +
-                backdrop_original + '\'' + ", poster_154='" +
-                poster_154 + '\'' + ", poster_185='" +
-                poster_185 + '\'' + ", poster_342='" +
-                poster_342 + '\'' + ", poster_500='" +
-                poster_500 + '\'' + ", poster_780='" +
-                poster_780 + '\'' + ", poster_92='" +
-                poster_92 + '\'' + ", poster_original='" +
-                poster_original + '\'' + ", netflixLink='" +
-                netflixLink + '\'' + ", primeLink='" +
-                primeLink + '\'' + ", disneyLink='" +
-                disneyLink + '\'' + ", paramountLink='" +
-                paramountLink + '\'' + ", starzLink='" +
-                starzLink + '\'' + '}';
+        return "BasicMovieInfo{"
+                + "imdbID='" + imdbID + '\''
+                + ", originalTitle='" + originalTitle + '\''
+                + ", language='" + language + '\''
+                + ", year=" + year
+                + ", overview='" + overview + '\''
+                + ", imdbRating=" + imdbRating
+                + ", backdrop_1280='" + backdrop_1280 + '\''
+                + ", backdrop_300='" + backdrop_300 + '\''
+                + ", backdrop_780='" + backdrop_780 + '\''
+                + ", backdrop_original='" + backdrop_original + '\''
+                + ", poster_154='" + poster_154 + '\''
+                + ", poster_185='" + poster_185 + '\''
+                + ", poster_342='" + poster_342 + '\''
+                + ", poster_500='" + poster_500 + '\''
+                + ", poster_780='" + poster_780 + '\''
+                + ", poster_92='" + poster_92 + '\''
+                + ", poster_original='" + poster_original + '\''
+                + ", netflixLink='" + netflixLink + '\''
+                + ", primeLink='" + primeLink + '\''
+                + ", disneyLink='" + disneyLink + '\''
+                + ", paramountLink='" + paramountLink + '\''
+                + ", starzLink='" + starzLink + '\''
+                + ", peacockLink='" + peacockLink + '\''
+                + ", huluLink='" + huluLink + '\''
+                + ", hboLink='" + hboLink + '\''
+                + ", appleLink='" + appleLink + '\''
+                + ", showtimeLink='" + showtimeLink + '\''
+                + ", mubiLink='" + mubiLink + '\''
+                + ", curiosityLink='" + curiosityLink + '\''
+                + ", all4Link='" + all4Link + '\''
+                + ", craveLink='" + craveLink + '}';
     }
 }

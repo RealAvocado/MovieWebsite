@@ -11,5 +11,6 @@ import java.util.Optional;
 public interface MovieCountryPairRepository extends JpaRepository<MovieCountryPair, Integer> {
     List<MovieCountryPair> findMovieCountryPairByCountry(String country);
 
+    Optional<MovieCountryPair> findMovieCountryPairByImdbID(String imdbID);
     Optional<MovieCountryPair> findMovieCountryPairByCountryAndImdbID(String country, String imdbID);
 }

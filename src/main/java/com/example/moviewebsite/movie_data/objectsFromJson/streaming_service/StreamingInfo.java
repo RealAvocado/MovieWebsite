@@ -260,6 +260,22 @@ public class StreamingInfo {
         return this;
     }
 
+    public All4 getAll4() {
+        return all4;
+    }
+
+    public void setAll4(All4 all4) {
+        this.all4 = all4;
+    }
+
+    public Crave getCrave() {
+        return crave;
+    }
+
+    public void setCrave(Crave crave) {
+        this.crave = crave;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -312,6 +328,14 @@ public class StreamingInfo {
         sb.append("curiosity");
         sb.append('=');
         sb.append(((this.curiosity == null)?"<null>":this.curiosity));
+        sb.append(',');
+        sb.append("all4");
+        sb.append('=');
+        sb.append(((this.all4 == null)?"<null>":this.all4));
+        sb.append(',');
+        sb.append("crave");
+        sb.append('=');
+        sb.append(((this.crave == null)?"<null>":this.crave));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');

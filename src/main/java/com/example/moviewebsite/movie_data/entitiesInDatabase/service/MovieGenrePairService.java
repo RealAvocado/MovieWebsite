@@ -33,11 +33,12 @@ public class MovieGenrePairService {
         return movieGenrePairRepository.findMovieGenrePairByGenre(genre);
     }
 
+    @Transactional
     public void insertMovieGenrePairFromOneMovie (Movie movie){
-        for (Integer genre : movie.getGenres()) {
-            MovieGenrePair movieGenrePair = new MovieGenrePair(movie.getImdbID(), genre);
-            Optional<MovieGenrePair> movieGenrePairOptional = movieGenrePairRepository.findMovieGenrePairByImdbIDAndGenre(movie.getImdbID(), genre);
-            if (movieGenrePairOptional.isEmpty()) {
+        Optional<MovieGenrePair> movieGenrePairOptional = movieGenrePairRepository.findMovieGenrePairByImdbID(movie.getImdbID());
+        if (movieGenrePairOptional.isEmpty()){
+            for (Integer genre : movie.getGenres()) {
+                MovieGenrePair movieGenrePair = new MovieGenrePair(movie.getImdbID(), genre);
                 movieGenrePairRepository.save(movieGenrePair);
             }
         }
