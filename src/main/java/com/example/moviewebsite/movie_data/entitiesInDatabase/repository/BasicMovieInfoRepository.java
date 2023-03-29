@@ -16,7 +16,6 @@ import java.util.Optional;
 public interface BasicMovieInfoRepository extends JpaRepository<BasicMovieInfo, String> {
     //create
 
-
     //read
     List<BasicMovieInfo> findBasicMovieInfoByOriginalTitle(String originalTitle);
     List<BasicMovieInfo> findBasicMovieInfoByLanguage(String language);
@@ -37,6 +36,7 @@ public interface BasicMovieInfoRepository extends JpaRepository<BasicMovieInfo, 
     Optional<BasicMovieInfo> findBasicMovieInfoByImdbIDAndCuriosityLink(String imdbID, String curiosityLink);
     Optional<BasicMovieInfo> findBasicMovieInfoByImdbIDAndAll4Link(String imdbID, String all4Link);
     Optional<BasicMovieInfo> findBasicMovieInfoByImdbIDAndCraveLink(String imdbID, String craveLink);
+    Optional<BasicMovieInfo> findBasicMovieInfoByImdbIDAndIplayerLink(String imdbID, String iplayerLink);
 
 
     //update
@@ -115,6 +115,11 @@ public interface BasicMovieInfoRepository extends JpaRepository<BasicMovieInfo, 
     @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Query(value = "update BasicMovieInfo basic_movie_info set basic_movie_info.craveLink = :craveLink where basic_movie_info.imdbID = :id")
     int updateCraveLink(@Param("craveLink") String craveLink, @Param("id") String id);
+
+    @Transactional
+    @Modifying(clearAutomatically = true, flushAutomatically = true)
+    @Query(value = "update BasicMovieInfo basic_movie_info set basic_movie_info.iplayerLink = :iplayerLink where basic_movie_info.imdbID = :id")
+    int updateIplayerLink(@Param("iplayerLink") String iplayerLink, @Param("id") String id);
 
     //delete
     int deleteBasicMovieInfoByImdbID(String imdbID);

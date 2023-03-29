@@ -1,7 +1,7 @@
 package com.example.moviewebsite.movie_data.entitiesInDatabase.controller;
 
 import com.example.moviewebsite.movie_data.entitiesInDatabase.entity.MovieCountryPair;
-import com.example.moviewebsite.movie_data.entitiesInDatabase.service.MovieCountryPairService;
+import com.example.moviewebsite.movie_data.entitiesInDatabase.service.impl.MovieCountryPairServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,15 +13,15 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "api/movie/country_of_movie")
 public class MovieCountryPairController {
-    private final MovieCountryPairService movieCountryPairService;
+    private final MovieCountryPairServiceImpl movieCountryPairServiceImpl;
 
     @Autowired
-    public MovieCountryPairController(MovieCountryPairService movieCountryPairService) {
-        this.movieCountryPairService = movieCountryPairService;
+    public MovieCountryPairController(MovieCountryPairServiceImpl movieCountryPairServiceImpl) {
+        this.movieCountryPairServiceImpl = movieCountryPairServiceImpl;
     }
 
     @GetMapping(path = "{country}")
     public List<MovieCountryPair> getMoviesByCountry(@PathVariable String country) {
-        return movieCountryPairService.getMoviesByCountry(country);
+        return movieCountryPairServiceImpl.getMoviesByCountry(country);
     }
 }

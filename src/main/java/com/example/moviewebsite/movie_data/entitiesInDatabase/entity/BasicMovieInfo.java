@@ -75,6 +75,8 @@ public class BasicMovieInfo {
     private String all4Link;
     @Column(table = "streaming_link")
     private String craveLink;
+    @Column(table = "streaming_link")
+    private String iplayerLink;
 
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "basicMovieInfo")
     private List<MovieCastPair> movieCastPairList = new ArrayList<>();
@@ -94,7 +96,7 @@ public class BasicMovieInfo {
     public BasicMovieInfo(String imdbID, String originalTitle, String language, Integer year, String overview, Integer imdbRating,
                           String backdrop_1280, String backdrop_300, String backdrop_780, String backdrop_original,
                           String poster_154, String poster_185, String poster_342, String poster_500, String poster_780, String poster_92, String poster_original,
-                          String netflixLink, String primeLink, String disneyLink, String paramountLink, String starzLink, String peacockLink, String huluLink, String hboLink, String appleLink, String showtimeLink, String mubiLink, String curiosityLink, String all4Link, String craveLink) {
+                          String netflixLink, String primeLink, String disneyLink, String paramountLink, String starzLink, String peacockLink, String huluLink, String hboLink, String appleLink, String showtimeLink, String mubiLink, String curiosityLink, String all4Link, String craveLink, String iplayerLink) {
         this.imdbID = imdbID;
         this.originalTitle = originalTitle;
         this.language = language;
@@ -126,6 +128,7 @@ public class BasicMovieInfo {
         this.curiosityLink = curiosityLink;
         this.all4Link = all4Link;
         this.craveLink = craveLink;
+        this.iplayerLink = iplayerLink;
     }
 
     public String getImdbID() {
@@ -376,6 +379,14 @@ public class BasicMovieInfo {
         this.craveLink = craveLink;
     }
 
+    public String getIplayerLink() {
+        return iplayerLink;
+    }
+
+    public void setIplayerLink(String iplayerLink) {
+        this.iplayerLink = iplayerLink;
+    }
+
     @Override
     public String toString() {
         return "BasicMovieInfo{"
@@ -409,6 +420,8 @@ public class BasicMovieInfo {
                 + ", mubiLink='" + mubiLink + '\''
                 + ", curiosityLink='" + curiosityLink + '\''
                 + ", all4Link='" + all4Link + '\''
-                + ", craveLink='" + craveLink + '}';
+                + ", craveLink='" + craveLink + '\''
+                + ", iPlayerLink='" + iplayerLink + '\''
+                + '}';
     }
 }

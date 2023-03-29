@@ -55,6 +55,9 @@ public class StreamingInfo {
     @JsonProperty("crave")
     private Crave crave;
 
+    @JsonProperty("iplayer")
+    private Iplayer iplayer;
+
     /**
      * No args constructor for use in serialization
      *
@@ -62,7 +65,7 @@ public class StreamingInfo {
     public StreamingInfo() {
     }
 
-    public StreamingInfo(Netflix netflix, Prime prime, Disney disney, Peacock peacock, Paramount paramount, Starz starz, Hulu hulu, Hbo hbo, Apple apple, Showtime showtime, Mubi mubi, Curiosity curiosity, All4 all4, Crave crave) {
+    public StreamingInfo(Netflix netflix, Prime prime, Disney disney, Peacock peacock, Paramount paramount, Starz starz, Hulu hulu, Hbo hbo, Apple apple, Showtime showtime, Mubi mubi, Curiosity curiosity, All4 all4, Crave crave, Iplayer iplayer) {
         this.netflix = netflix;
         this.prime = prime;
         this.disney = disney;
@@ -77,6 +80,7 @@ public class StreamingInfo {
         this.curiosity = curiosity;
         this.all4 = all4;
         this.crave = crave;
+        this.iplayer = iplayer;
     }
 
 
@@ -276,6 +280,14 @@ public class StreamingInfo {
         this.crave = crave;
     }
 
+    public Iplayer getIplayer() {
+        return iplayer;
+    }
+
+    public void setIplayer(Iplayer iplayer) {
+        this.iplayer = iplayer;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -336,6 +348,10 @@ public class StreamingInfo {
         sb.append("crave");
         sb.append('=');
         sb.append(((this.crave == null)?"<null>":this.crave));
+        sb.append(',');
+        sb.append("iPlayer");
+        sb.append('=');
+        sb.append(((this.iplayer == null)?"<null>":this.iplayer));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
