@@ -1,5 +1,4 @@
-/*------------------Home Page-------------------*/
-
+/*------------------Global-------------------*/
 /**header**/
 .navbar-brand h1 { /* title name */
   font-family: 'Oxygen', sans-serif;
@@ -13,17 +12,22 @@
   line-height: .75;
 }
 
-#search-bar, #search-button {
-  margin-top: 8px;
-}
-
 #nav-list {
   text-align: center;
   display: block;
-  magin: 0 auto;
+  margin: 0 auto;
   font-family: 'Georgia', Serif;
 }
 /**end header**/
+/*------------------End Global-------------------*/
+
+
+
+/*------------------Home Page-------------------*/
+
+#search-bar, #search-button {
+  margin-top: 8px;
+}
 
 /* main content */
 #main-content{
@@ -103,13 +107,6 @@
 }
 
 /*------------------End Home Page-------------------*/
-
-
-
-
-
-
-
 
 
 
