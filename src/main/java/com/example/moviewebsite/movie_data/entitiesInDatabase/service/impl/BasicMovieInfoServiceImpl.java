@@ -16,8 +16,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class BasicMovieInfoServiceImpl implements BasicMovieInfoService {
@@ -42,6 +41,25 @@ public class BasicMovieInfoServiceImpl implements BasicMovieInfoService {
 
     public List<BasicMovieInfo> getMovieInfoByLanguage(String language) {
         return basicMovieInfoRepository.findBasicMovieInfoByLanguage(language);
+    }
+
+    public List<BasicMovieInfo> getMovieInfoByYear(String years) {
+        String[] yearsArr = years.split("&");
+        List<Integer> yearsListInt = new ArrayList<>();
+        List<BasicMovieInfo> result = new ArrayList<>();
+        for (String yearStr : yearsArr) {
+            int year = Integer.parseInt(yearStr);
+            yearsListInt.add(year);
+        }
+        Collections.sort(yearsListInt);
+        for (Integer year : yearsListInt){
+            result.addAll(basicMovieInfoRepository.findBasicMovieInfoByYear(year));
+        }
+        return result;
+    }
+
+    public List<BasicMovieInfo> getMovieInfoByGenre(Integer genres) {
+        return null;
     }
 
     public void addMovieInfoByCountry(String country, String service) throws Exception {
@@ -253,6 +271,4 @@ public class BasicMovieInfoServiceImpl implements BasicMovieInfoService {
     public void updateMovieName(String newTitle, String imdbID) {
         basicMovieInfoRepository.updateMovieTitle(newTitle, imdbID);
     }
-
-
 }

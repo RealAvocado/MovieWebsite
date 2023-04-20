@@ -3,6 +3,7 @@ package com.example.moviewebsite.movie_data.entitiesInDatabase.repository;
 import com.example.moviewebsite.movie_data.entitiesInDatabase.entity.BasicMovieInfo;
 import com.example.moviewebsite.movie_data.entitiesInDatabase.entity.MovieGenrePair;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,13 +14,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface BasicMovieInfoRepository extends JpaRepository<BasicMovieInfo, String> {
-    //create
-
+public interface BasicMovieInfoRepository extends JpaRepository<BasicMovieInfo, String>, JpaSpecificationExecutor<BasicMovieInfo> {
     //read
+    Optional<BasicMovieInfo> findBasicMovieInfoByImdbID(String imdbID);
     List<BasicMovieInfo> findBasicMovieInfoByOriginalTitle(String originalTitle);
     List<BasicMovieInfo> findBasicMovieInfoByLanguage(String language);
-    Optional<BasicMovieInfo> findBasicMovieInfoByImdbID(String imdbID);
+    @Query ("SELECT basic_movie_info FROM BasicMovieInfo basic_movie_info WHERE basic_movie_info.year >= :year and basic_movie_info.year < :year+10")
+    List<BasicMovieInfo> findBasicMovieInfoByYear(@Param("year") Integer year);
+    @Query ("SELECT DISTINCT basic_movie_info FROM BasicMovieInfo basic_movie_info INNER JOIN MovieGenrePair movie_genre_pair ON basic_movie_info.imdbID = movie_genre_pair.imdbID WHERE movie_genre_pair.genre =:genre")
+    List<BasicMovieInfo> findBasicMovieInfoByGenre(@Param("genre") String genre);
 
     //query about streaming links
     Optional<BasicMovieInfo> findBasicMovieInfoByImdbIDAndNetflixLink(String imdbID, String netflixLink);
@@ -123,5 +126,4 @@ public interface BasicMovieInfoRepository extends JpaRepository<BasicMovieInfo, 
 
     //delete
     int deleteBasicMovieInfoByImdbID(String imdbID);
-
 }

@@ -17,17 +17,27 @@ public class BasicMovieInfoController {
         this.basicMovieInfoServiceImpl = basicMovieInfoServiceImpl;
     }
 
-    @GetMapping(path = "{movieTitle}")
+    @GetMapping(path = "title={movieTitle}")
     public List<BasicMovieInfo> getMovieInfoByTitle(@PathVariable("movieTitle") String movieTitle) {
         return basicMovieInfoServiceImpl.getMovieInfoByTitle(movieTitle);
     }
 
-    @GetMapping(path = "{language}")
+    @GetMapping(path = "language={language}")
     public List<BasicMovieInfo> getMovieInfoByLanguage(@PathVariable("language") String language) {
         return basicMovieInfoServiceImpl.getMovieInfoByLanguage(language);
     }
 
-    @PostMapping(path = "{country}/{service}")
+    @GetMapping(path = "year={years}")
+    public List<BasicMovieInfo> getMovieInfoByYear(@PathVariable String years) {
+        return basicMovieInfoServiceImpl.getMovieInfoByYear(years);
+    }
+
+    @GetMapping(path = "genre={genres}")
+    public List<BasicMovieInfo> getMovieInfoByGenre(@PathVariable Integer genres) {
+        return basicMovieInfoServiceImpl.getMovieInfoByGenre(genres);
+    }
+
+    @PostMapping(path = "country={country},service={service}")
     public void registerMovieInfoByCountry(@PathVariable String country, @PathVariable String service) {
         try {
             basicMovieInfoServiceImpl.addMovieInfoByCountry(country,service);
