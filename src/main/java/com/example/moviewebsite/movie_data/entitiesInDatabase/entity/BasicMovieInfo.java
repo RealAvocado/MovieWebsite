@@ -1,6 +1,6 @@
 package com.example.moviewebsite.movie_data.entitiesInDatabase.entity;
 
-import com.example.moviewebsite.user_data.entity.CollectionList;
+import com.example.moviewebsite.user_data.entity.WatchList;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -88,7 +88,7 @@ public class BasicMovieInfo {
     private List<MovieGenrePair> movieGenrePairList = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "basicMovieInfo")
-    private List<CollectionList> collectionList = new ArrayList<>();
+    private List<WatchList> watchList = new ArrayList<>();
 
     public BasicMovieInfo() {
     }

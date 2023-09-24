@@ -137,9 +137,11 @@ public class BasicMovieInfoServiceImpl implements BasicMovieInfoService {
     }
 
     public void addAllMovies() throws Exception {
-        String[] countryArr = {"ar", "au", "at", "az", "be", "br", "bg", "ca", "cl", "co", "hr", "cy", "cz", "dk", "ec", "ee", "fl", "fr", "de", "gr", "hk", "hu", "is", "in", "id", "ie", "il", "it", "jp", "lt", "my", "mx", "md", "nl", "nz", "mk", "no", "pa", "pe", "ph", "pl", "pt", "ro", "ru", "rs", "sg", "za", "kr", "es", "se", "ch", "th", "tr", "ua", "ae", "gb", "us", "vn"};
-        for (String country : countryArr) {
-            addMovieInfoByCountry(country,"netflix%2Cprime%2Cdisney");
+        HashMap<String, String> country_service_map = new HashMap<>();
+        country_service_map.put("us","netflix%2Cprime%2Cdisney");
+        //......
+        for (Map.Entry<String, String> entry : country_service_map.entrySet()){
+            addMovieInfoByCountry(entry.getKey(), entry.getValue());
         }
     }
 

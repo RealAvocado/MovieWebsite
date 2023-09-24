@@ -19,10 +19,16 @@ public interface BasicMovieInfoRepository extends JpaRepository<BasicMovieInfo, 
     Optional<BasicMovieInfo> findBasicMovieInfoByImdbID(String imdbID);
     List<BasicMovieInfo> findBasicMovieInfoByOriginalTitle(String originalTitle);
     List<BasicMovieInfo> findBasicMovieInfoByLanguage(String language);
+    List<BasicMovieInfo> findBasicMovieInfoByLanguageAndYear(String language, Integer Year);
     @Query ("SELECT basic_movie_info FROM BasicMovieInfo basic_movie_info WHERE basic_movie_info.year >= :year and basic_movie_info.year < :year+10")
     List<BasicMovieInfo> findBasicMovieInfoByYear(@Param("year") Integer year);
     @Query ("SELECT DISTINCT basic_movie_info FROM BasicMovieInfo basic_movie_info INNER JOIN MovieGenrePair movie_genre_pair ON basic_movie_info.imdbID = movie_genre_pair.imdbID WHERE movie_genre_pair.genre =:genre")
     List<BasicMovieInfo> findBasicMovieInfoByGenre(@Param("genre") String genre);
+
+    @Query ("SELECT basic_movie_info FROM BasicMovieInfo basic_movie_info WHERE basic_movie_info.year = :year1 or basic_movie_info.year = :year2")
+    List<BasicMovieInfo> findBasicMovieInfoByYearTwoParam(@Param("year") Integer year1, @Param("year") Integer year2);
+    @Query ("SELECT basic_movie_info FROM BasicMovieInfo basic_movie_info WHERE basic_movie_info.year = :year1 or basic_movie_info.year = :year2 or basic_movie_info.year = :year3")
+    List<BasicMovieInfo> findBasicMovieInfoByYearThreeParam(@Param("year") Integer year1, @Param("year") Integer year2, @Param("year") Integer year3);
 
     //query about streaming links
     Optional<BasicMovieInfo> findBasicMovieInfoByImdbIDAndNetflixLink(String imdbID, String netflixLink);

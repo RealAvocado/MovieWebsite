@@ -11,15 +11,11 @@ import java.util.Calendar;
 import java.util.Map;
 
 public class JWTUtils {
-
     private static final String SIGNATURE = "secret";
 
     public static String getToken(Map<String, String> map) {
-
         Calendar instance = Calendar.getInstance();
-
         instance.add(Calendar.DATE, 7);
-
         JWTCreator.Builder builder = JWT.create();
         // payload
         map.forEach(builder::withClaim);
@@ -33,5 +29,4 @@ public class JWTUtils {
         jwt = verifier.verify(token);
         return jwt.getClaims();
     }
-
 }

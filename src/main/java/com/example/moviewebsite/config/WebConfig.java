@@ -8,7 +8,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-
     private final AuthHandlerInterceptor authHandlerInterceptor;
 
     @Autowired
@@ -21,5 +20,4 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(authHandlerInterceptor)
             .excludePathPatterns("/api/user/login","/api/movie/basicInfo/country={country},service={service}");
     }
-
 }

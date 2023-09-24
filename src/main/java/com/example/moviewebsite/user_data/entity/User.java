@@ -15,7 +15,7 @@ public class User {
     private String password;
 
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "basicMovieInfo")
-    private List<CollectionList> collectionList = new ArrayList<>();
+    private List<WatchList> watchList = new ArrayList<>();
 
     public User() {
     }
