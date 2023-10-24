@@ -28,60 +28,7 @@ The frontend development is based on Vue.js and Bootstrap and the backend develo
 
 Raw data of movies used in the project is provided by a public API at RapidAPI. This API provides complete meta data of a single movie, which lays the foundation for subsequent more complex data processing.
 
-An example of a set of movie meta data provided by the API is shown below:
-
-
-*{<br>
-"imdbID":"tt2395427",<br>
-"tmdbID":"99861",<br>
-"imdbRating":73,<br>
-"imdbVoteCount":872847,<br>
-"tmdbRating":72,<br>
-"backdropPath":"/6YwkGolwdOMNpbTOmLjoehlVWs5.jpg",<br>
-"backdropURLs":<br>
-{<br>
-"1280":"https://image.tmdb.org/t/p/w1280/6YwkGolwdOMNpbTOmLjoehlVWs5.jpg",<br>
-"300":"https://image.tmdb.org/t/p/w300/6YwkGolwdOMNpbTOmLjoehlVWs5.jpg",<br>
-"780":"https://image.tmdb.org/t/p/w780/6YwkGolwdOMNpbTOmLjoehlVWs5.jpg",<br>
-"original":"https://image.tmdb.org/t/p/original/6YwkGolwdOMNpbTOmLjoehlVWs5.jpg"<br>
-},<br>
-"originalTitle":"Avengers: Age of Ultron",<br>
-"genres":[28,12,878],<br>
-"countries":["US"],<br>
-"year":2015,<br>
-"runtime":141,<br>
-"cast":["Robert Downey Jr.","Chris Hemsworth","Mark Ruffalo","Chris Evans","Scarlett Johansson","Jeremy Renner","James Spader"],<br>
-"significants":["Joss Whedon"],<br>
-"title":"Avengers: Age of Ultron",<br>
-"overview":"When Tony Stark tries to jumpstart a dormant peacekeeping program, things go awry and Earth’s Mightiest Heroes are put to the ultimate test as the fate of the planet hangs in the balance. As the villainous Ultron emerges, it is up to The Avengers to stop him from enacting his terrible plans, and soon uneasy alliances and unexpected action pave the way for an epic and unique global adventure.",<br>
-"tagline":"A New Age Has Come.",<br>
-"video":"JAUoeqvedMo",<br>
-"posterPath":"/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",<br>
-"posterURLs":<br>
-{<br>
-"154":"https://image.tmdb.org/t/p/w154/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",<br>
-"185":"https://image.tmdb.org/t/p/w185/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",<br>
-"342":"https://image.tmdb.org/t/p/w342/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",<br>
-"500":"https://image.tmdb.org/t/p/w500/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",<br>
-"780":"https://image.tmdb.org/t/p/w780/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",<br>
-"92":"https://image.tmdb.org/t/p/w92/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",<br>
-"original":"https://image.tmdb.org/t/p/original/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg"<br>
-},<br>
-"age":11,<br>
-"streamingInfo":<br>
-{<br>
-"disney":<br>
-{<br>
-"us":<br>
-{<br>
-"link":"https://www.disneyplus.com/movies/-/76IUxY0rNHzt",<br>
-"added":1606700591,<br>
-"leaving":0<br>
-}<br>
-}<br>
-},<br>
-"originalLanguage":"en"<br>
-}<br>*
+An example of a set of movie meta data provided by the API is attached in the appendix.
 
 According to the properties of JSON, every curly bracket pair corresponds to an object and other attributes can be represented by primitive datatype. As a result, a Java class called “Movie” with several embedded classes is created to match this JSON object. The Jackson library is used to better process the JSON data. The @JsonProperty annotation maps the field in the JSON object to a corresponding field in Java Class.
 
@@ -172,7 +119,63 @@ The following recourses helped me to complete this project.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Appendix
 
+1. Example of Data Provided API
+
+*{<br>
+"imdbID":"tt2395427",<br>
+"tmdbID":"99861",<br>
+"imdbRating":73,<br>
+"imdbVoteCount":872847,<br>
+"tmdbRating":72,<br>
+"backdropPath":"/6YwkGolwdOMNpbTOmLjoehlVWs5.jpg",<br>
+"backdropURLs":<br>
+{<br>
+"1280":"https://image.tmdb.org/t/p/w1280/6YwkGolwdOMNpbTOmLjoehlVWs5.jpg",<br>
+"300":"https://image.tmdb.org/t/p/w300/6YwkGolwdOMNpbTOmLjoehlVWs5.jpg",<br>
+"780":"https://image.tmdb.org/t/p/w780/6YwkGolwdOMNpbTOmLjoehlVWs5.jpg",<br>
+"original":"https://image.tmdb.org/t/p/original/6YwkGolwdOMNpbTOmLjoehlVWs5.jpg"<br>
+},<br>
+"originalTitle":"Avengers: Age of Ultron",<br>
+"genres":[28,12,878],<br>
+"countries":["US"],<br>
+"year":2015,<br>
+"runtime":141,<br>
+"cast":["Robert Downey Jr.","Chris Hemsworth","Mark Ruffalo","Chris Evans","Scarlett Johansson","Jeremy Renner","James Spader"],<br>
+"significants":["Joss Whedon"],<br>
+"title":"Avengers: Age of Ultron",<br>
+"overview":"When Tony Stark tries to jumpstart a dormant peacekeeping program, things go awry and Earth’s Mightiest Heroes are put to the ultimate test as the fate of the planet hangs in the balance. As the villainous Ultron emerges, it is up to The Avengers to stop him from enacting his terrible plans, and soon uneasy alliances and unexpected action pave the way for an epic and unique global adventure.",<br>
+"tagline":"A New Age Has Come.",<br>
+"video":"JAUoeqvedMo",<br>
+"posterPath":"/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",<br>
+"posterURLs":<br>
+{<br>
+"154":"https://image.tmdb.org/t/p/w154/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",<br>
+"185":"https://image.tmdb.org/t/p/w185/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",<br>
+"342":"https://image.tmdb.org/t/p/w342/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",<br>
+"500":"https://image.tmdb.org/t/p/w500/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",<br>
+"780":"https://image.tmdb.org/t/p/w780/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",<br>
+"92":"https://image.tmdb.org/t/p/w92/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",<br>
+"original":"https://image.tmdb.org/t/p/original/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg"<br>
+},<br>
+"age":11,<br>
+"streamingInfo":<br>
+{<br>
+"disney":<br>
+{<br>
+"us":<br>
+{<br>
+"link":"https://www.disneyplus.com/movies/-/76IUxY0rNHzt",<br>
+"added":1606700591,<br>
+"leaving":0<br>
+}<br>
+}<br>
+},<br>
+"originalLanguage":"en"<br>
+}<br>*
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
