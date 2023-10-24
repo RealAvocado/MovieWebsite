@@ -51,12 +51,11 @@ Basically, the most straightforward way is to map each Java class into a single 
 ![Home Page](./images/home_page.png)
 
 #### Responsive Design
-The interface is intended to be in the responsive style and should fit different sizes of screen.<br>
+The interface is intended to be in the responsive style and should fit different sizes of screen. The image below is an example of the interface mode on a cell phone<br>
 <br>
-<div style="text-align:center">
-    <img src="./images/home_page_phone_view.png" alt="Home Page Phone View">
-</div>
-
+<p align="center">
+  <img src="./images/home_page_phone_view.png" alt="Home Page Phone View">
+</p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
