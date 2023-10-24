@@ -29,7 +29,7 @@ The frontend development is based on Vue.js and Bootstrap and the backend develo
 Raw data of movies used in the project is provided by a public API at RapidAPI. This API provides complete meta data of a single movie, which lays the foundation for subsequent more complex data processing.
 
 An example of a set of movie meta data provided by the API is attached in the appendix.
-<p align="right">(<a href="#appendix">back to top</a>)</p>
+<p align="right">(<a href="#appendix">see appendix</a>)</p>
 
 According to the properties of JSON, every curly bracket pair corresponds to an object and other attributes can be represented by primitive datatype. As a result, a Java class called “Movie” with several embedded classes is created to match this JSON object. The Jackson library is used to better process the JSON data. The @JsonProperty annotation maps the field in the JSON object to a corresponding field in Java Class.
 
