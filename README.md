@@ -31,7 +31,7 @@ Raw data of movies used in the project is provided by a public API at RapidAPI. 
 An example of a set of movie meta data provided by the API is attached in the appendix.
 <p align="right">(<a href="#appendix">see appendix</a>)</p>
 
-According to the properties of JSON, every curly bracket pair corresponds to an object and other attributes can be represented by primitive datatype. As a result, a Java class called “Movie” with several embedded classes is created to match this JSON object. The Jackson library is used to better process the JSON data. The @JsonProperty annotation maps the field in the JSON object to a corresponding field in Java Class.
+According to the properties of JSON, every curly bracket pair corresponds to an object and other attributes can be represented by primitive datatype. As a result, a Java class called “Movie” with several embedded classes need to be created to match this JSON object. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -115,14 +115,15 @@ The following recourses helped me to complete this project.
 
 * [RapidAPI](https://rapidapi.com/movie-of-the-night-movie-of-the-night-default/api/streaming-availability)
 * [Vue.js Documentation](https://vuejs.org/guide/introduction.html)
-
+* [JPA Documentation](https://www.objectdb.com/api/java/jpa)
+* [JSON Mapper](https://www.jsonschema2pojo.org/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="appendix"></a>
 ## Appendix
 
-1. Example of Data Provided API
+1. Example of Data Provided by API
 
 *{<br>
 "imdbID":"tt2395427",<br>
