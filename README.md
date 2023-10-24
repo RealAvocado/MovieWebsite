@@ -39,12 +39,11 @@ The frontend development is based on Vue.js and Bootstrap and the backend develo
 <a name="data-acquisition-and-processing"></a>
 ## Data Acquisition and Processing
 
-Raw data of movies used in the project is provided by a public API at RapidAPI. This API provides complete meta data of a single movie, which lays the foundation for subsequent more complex data processing.
+Raw data of movies used in the project is provided by a public API at RapidAPI. This API provides complete meta data of a single movie including the streaming link from only one service, which lays the foundation for subsequent more complex data processing.
 
 An example of a set of movie meta data provided by the API is attached in the appendix.
 <p align="right">(<a href="#appendix">see appendix</a>)</p>
 
-According to the properties of JSON, every curly bracket pair corresponds to an object and other attributes can be represented by primitive datatype. As a result, a Java class called “Movie” with several embedded classes need to be created to match this JSON object. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
