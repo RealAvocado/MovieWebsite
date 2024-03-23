@@ -54,7 +54,8 @@ public class SearchMovieServiceImpl implements SearchMovieService {
             List<Predicate> predicateList = new ArrayList<>();
 
             //filter years
-            if (searchParam.getYear().size() > 0) {
+            if (!searchParam.getYear().isEmpty()) {
+                // WHERE basic_movie_info.year IN searchParam.getYear()
                 In<Object> yearIn = builder.in(root.get("year"));
                 for (Integer year : searchParam.getYear()) {
                     yearIn.value(year);
@@ -64,6 +65,7 @@ public class SearchMovieServiceImpl implements SearchMovieService {
 
             //filter languages
             if (StringUtils.hasText(searchParam.getLanguage())) {
+                // WHERE basic_movie_info.language = searchParam.getLanguage()
                 Predicate infoPre = builder.equal(root.get("language"), searchParam.getLanguage());
                 predicateList.add(infoPre);
             }
@@ -76,7 +78,7 @@ public class SearchMovieServiceImpl implements SearchMovieService {
 
             //query genres
             Join<Object, Object> infoJoin = root.join("movieGenrePairList", JoinType.LEFT);
-            if (searchParam.getGenres().size() > 0) {
+            if (!searchParam.getGenres().isEmpty()) {
                 In<Object> genreIn = builder.in(infoJoin.get("genre"));
                 for (Integer genre : searchParam.getGenres()) {
                     genreIn.value(genre);
