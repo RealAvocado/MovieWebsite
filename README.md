@@ -7,6 +7,7 @@
 <p align="left"><a href="#database-design">Database Design</a></p>
 <p align="left"><a href="#ui-design">UI Design</a></p>
 <p align="left"><a href="#usage">Usage</a></p>
+<p align="left"><a href="#deployment">Deployment on AWS</a></p>
 <p align="left"><a href="#contributing">Contributing</a></p>
 <p align="left"><a href="#contact">Contact</a></p>
 <p align="left"><a href="#acknowledgments">Acknowledgments</a></p>
@@ -94,6 +95,43 @@ The interface is intended to be in the responsive style and should fit different
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<a name="deployment"></a>
+## Deployment
+### 1. Export local database
+
+Use the `pg_dump` tool to export your local PostgreSQL database. This command will generate a SQL script file containing the database structure and data.
+
+Open a command line or terminal and run the following command:
+
+```sh
+pg_dump -U <local_username> -W -F c -b -v -f "<output_file_path>" <database_name>
+```
+
+- `<local_username>` is your local PostgreSQL database username.
+- `<output_file_path>` is the storage path and file name of the export file, such as `/path/to/your/db_backup.dump`.
+- `<database_name>` is the name of the database you want to export.
+
+This command will prompt you for the password for your local database.
+
+
+### 2. Import to RDS instance
+
+Next, use the `pg_restore` tool to import the exported data into an Amazon RDS instance. You need to be able to connect to the RDS instance from your local machine.
+
+Run the following command to import the data:
+
+```sh
+pg_restore -U <rds_username> -h <rds_endpoint> -p 5432 -d <rds_database_name> -v "<input_file_path>"
+```
+
+- `<rds_username>` is the username of your RDS instance.
+- `<rds_endpoint>` is the end node address of the RDS instance.
+- `<rds_database_name>` is the name of the database you created in RDS.
+- `<input_file_path>` is the previously exported file path, for example `/path/to/your/db_backup.dump`.
+
+This command will prompt you to enter the password for the RDS instance.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
 <a name="contributing"></a>
