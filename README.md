@@ -1,13 +1,26 @@
 <a name="readme-top"></a>
 # Movie Streaming Platform in Spring Boot, PostgreSQL and Vue.js #
 
+## Catalog
+<p align="left"><a href="#about-project">About The Project</a></p>
+<p align="left"><a href="#data-acquisition-and-processing">Data Acquisition and Processing</a></p>
+<p align="left"><a href="#database-design">Database Design</a></p>
+<p align="left"><a href="#ui-design">UI Design</a></p>
+<p align="left"><a href="#usage">Usage</a></p>
+<p align="left"><a href="#deployment">Deployment on AWS</a></p>
+<p align="left"><a href="#contributing">Contributing</a></p>
+<p align="left"><a href="#contact">Contact</a></p>
+<p align="left"><a href="#acknowledgments">Acknowledgments</a></p>
+<p align="left"><a href="#appendix">Appendix</a></p>
+<br>
 
 <!-- ABOUT THE PROJECT -->
+<a name="about-project"></a>
 ## About The Project
 This project produces a movie searching website which integrates data source from 13 streaming services (Netflix, Prime, Disney+ .etc) with totally 39965 movies. It allow users to search movies through flexible searching criteria and easily find the streaming links of certain services they want.
 
 ### Background
-Originally, the information of movies is distributed on the internet and different platforms focus on different aspects about movies. This causes some inconvenience for people to find and watch certain movies they want. For example, the Netflix focuses on streaming the video and the Rotten Tomatoes is mainly about recording the acceptance of movies. Moreover, there will still exits discrepancy between two platforms of the same type: it’s possible that some movies are contained by Netflix but not by Amazon Prime Video. This causes problems for users because they need to switch between many websites to find what they want. As a consequence, a single monolithic platform including a more complete information of movies on the internet will obviate such an inconvenience and it is appealing to users.
+Originally, the information of movies is distributed on the internet and different platforms focus on different aspects about movies. This causes some inconvenience for people to find and watch certain movies they want. For example, the Netflix focuses on streaming the video and the Rotten Tomatoes is mainly about recording the acceptance of movies. Moreover, there also exists discrepancy between two platforms of the same type: it’s possible that some movies are contained by Netflix but not by Amazon Prime Video. This causes problems for users because they need to switch between many websites to find what they want. As a consequence, a single monolithic platform including a more complete information of movies on the internet will obviate such an inconvenience and it is appealing to users.
 
 Motivated by such a demand, this project produces a movie search website which integrates resources from tens of different major streaming services such as Netflix, Amazon Prime Video and Disney. The project consists of front-end web pages and a back-end server. The purpose is to provide a compact and time-saving platform with rich resources for movies fans to find movies they want. A very similar and famous website is TMDB [https://www.themoviedb.org/](https://www.themoviedb.org/ "TMDB").
 
@@ -24,24 +37,25 @@ The frontend development is based on Vue.js and Bootstrap and the backend develo
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<a name="data-acquisition-and-processing"></a>
 ## Data Acquisition and Processing
 
-Raw data of movies used in the project is provided by a public API at RapidAPI. This API provides complete meta data of a single movie, which lays the foundation for subsequent more complex data processing.
+Raw data of movies used in the project is provided by a public API at RapidAPI. This API provides complete meta data of a single movie including the streaming link from only one service, which lays the foundation for subsequent more complex data processing.
 
 An example of a set of movie meta data provided by the API is attached in the appendix.
 <p align="right">(<a href="#appendix">see appendix</a>)</p>
 
-According to the properties of JSON, every curly bracket pair corresponds to an object and other attributes can be represented by primitive datatype. As a result, a Java class called “Movie” with several embedded classes is created to match this JSON object. The Jackson library is used to better process the JSON data. The @JsonProperty annotation maps the field in the JSON object to a corresponding field in Java Class.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<a name="database-design"></a>
 ## Database Design
 Basically, the most straightforward way is to map each Java class into a single table. However, when a database table contains a large number of fields, it can cause several issues such as decreased query performance, increased complexity, and difficulty in managing the table. To address these problems, it is often necessary to partition or shard the table into smaller tables based on a specific set of logic fields. This strategy can help to improve query performance, reduce storage requirements, and simplify data management. Based on this strategy, the ER diagram is designed as shown below.
 ![ER Diagram](./images/database_ER_diagram.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+<a name="ui-design"></a>
 ## UI Design
 
 #### Login Page
@@ -51,16 +65,16 @@ Basically, the most straightforward way is to map each Java class into a single 
 ![Home Page](./images/home_page.png)
 
 #### Responsive Design
-The interface is intended to be in the responsive style and should fit different sizes of screen.<br>
+The interface is intended to be in the responsive style and should fit different sizes of screen. The image below is an example of the interface mode on a cell phone<br>
 <br>
-<div style="text-align:center">
-    <img src="./images/home_page_phone_view.png" alt="Home Page Phone View">
-</div>
-
+<p align="center">
+  <img src="./images/home_page_phone_view.png" alt="Home Page Phone View">
+</p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
+<a name="usage"></a>
 ## Usage
 
 ### Use cases:
@@ -81,8 +95,46 @@ The interface is intended to be in the responsive style and should fit different
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<a name="deployment"></a>
+## Deployment
+### 1. Export local database
+
+Use the `pg_dump` tool to export your local PostgreSQL database. This command will generate a SQL script file containing the database structure and data.
+
+Open a command line or terminal and run the following command:
+
+```sh
+pg_dump -U <local_username> -W -F c -b -v -f "<output_file_path>" <database_name>
+```
+
+- `<local_username>` is your local PostgreSQL database username.
+- `<output_file_path>` is the storage path and file name of the export file, such as `/path/to/your/db_backup.dump`.
+- `<database_name>` is the name of the database you want to export.
+
+This command will prompt you for the password for your local database.
+
+
+### 2. Import to RDS instance
+
+Next, use the `pg_restore` tool to import the exported data into an Amazon RDS instance. You need to be able to connect to the RDS instance from your local machine.
+
+Run the following command to import the data:
+
+```sh
+pg_restore -U <rds_username> -h <rds_endpoint> -p 5432 -d <rds_database_name> -v "<input_file_path>"
+```
+
+- `<rds_username>` is the username of your RDS instance.
+- `<rds_endpoint>` is the end node address of the RDS instance.
+- `<rds_database_name>` is the name of the database you created in RDS.
+- `<input_file_path>` is the previously exported file path, for example `/path/to/your/db_backup.dump`.
+
+This command will prompt you to enter the password for the RDS instance.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
+<a name="contributing"></a>
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -101,6 +153,7 @@ Don't forget to give the project a star! Thanks again!
 
 
 <!-- CONTACT -->
+<a name="contact"></a>
 ## Contact
 
 Letian Jiang (Email: letian.jiang123@outlook.com)
@@ -110,20 +163,22 @@ Letian Jiang (Email: letian.jiang123@outlook.com)
 
 
 <!-- ACKNOWLEDGMENTS -->
+<a name="acknowledgments"></a>
 ## Acknowledgments
 
 The following recourses helped me to complete this project.
 
 * [RapidAPI](https://rapidapi.com/movie-of-the-night-movie-of-the-night-default/api/streaming-availability)
 * [Vue.js Documentation](https://vuejs.org/guide/introduction.html)
-
+* [JPA Documentation](https://www.objectdb.com/api/java/jpa)
+* [JSON Mapper](https://www.jsonschema2pojo.org/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="appendix"></a>
 ## Appendix
 
-1. Example of Data Provided API
+1. Example of Data Provided by API
 
 *{<br>
 "imdbID":"tt2395427",<br>
