@@ -1,6 +1,7 @@
 <a name="readme-top"></a>
 # Movie Streaming Platform in Spring Boot, PostgreSQL and Vue.js #
 
+
 ## Catalog
 <p align="left"><a href="#about-project">About The Project</a></p>
 <p align="left"><a href="#data-acquisition-and-processing">Data Acquisition and Processing</a></p>
@@ -13,6 +14,13 @@
 <p align="left"><a href="#acknowledgments">Acknowledgments</a></p>
 <p align="left"><a href="#appendix">Appendix</a></p>
 <br>
+
+Please temporarily use the dummy account below to log into the website: [http://movietonight.s3-website-us-east-1.amazonaws.com](http://movietonight.s3-website-us-east-1.amazonaws.com).<br/> 
+
+username: "david@outlook.com"<br/>
+password: "123456"<br/>
+
+Thank you for your interest!
 
 <!-- ABOUT THE PROJECT -->
 <a name="about-project"></a>
