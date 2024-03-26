@@ -134,18 +134,111 @@ pg_restore -U <rds_username> -h <rds_endpoint> -p 5432 -d <rds_database_name> -v
 
 This command will prompt you to enter the password for the RDS instance.
 
-#### 3. Compile Vue.js application
+#### 3. Modify application.properties
 
-Run `npm run build` command to complie the Vue.js application. This command will generate static files. Put static files into the `src/main/resources/static` folder of my Spring Boot application.
+Change the database source information in `application.properties` file. <br/>
+Add the following:<br/>
+`spring.datasource.url=jdbc:postgresql://moviedb.cpy4sgyu4vqd.us-east-1.rds.amazonaws.com:5432/postgres`<br/>
+`spring.datasource.username=postgres`<br/>
+`spring.datasource.password=********`<br/>
+
+Moreover, add `server.port=5000` in the file. This is because the application load balancer by default points to the Port 80 of the nginx server in EC2 instance. The nginx is configured to forward requests to Port 5000 by default, whereas out application server runs on Port 8080.
 
 #### 4. Compile Spring Boot application
 
 Run 'mvn clean package' command to generate a JAR file for the application. This JAR file is generated in `target` folder and will be uploaded to AWS EC2 for my server hosting.
 
-#### 5. Create Application on AWS Elastic Beanstalk
+#### 5. Create Application and Environment on AWS Elastic Beanstalk
 
+1) Open Elastic Beanstalk service and click `Create application`.<br/>
+2) In the application created, click `Create environment`.<br/>
+3) Start configuration, select `web server environment` at first.
+
+![web_server_env](./images/deployment/web_server_env.png)
+
+4) For the platform, I select `Java`, `Corretto 11 running on 64bit Amazon Linux 2023`. Choose whichever platform and branch that is suitable for your application. This is super important, because inproper branch may lead to failure of the luanch of the application. There's no need to select `Tomcat` or something else for my Spring Boot application in this case, because Spring Boot already configured a Tomcat server in it.\
+
+![platform_of_EC2](./images/deployment/platform_of_EC2.png)
+
+5) Configure the service access of the environment. If you don't have an IAM instance profile, create one in IAM console.
+
+![service_access](./images/deployment/service_access.png)
+
+6) For the following settings in environment config, it's fine to skip everything and leave them at default. Then submit the config and wait for Elastic Beanstalk to launch the environment.
+
+![EBS_env_default_settings](./images/deployment/EBS_env_default_settings.png)
+
+
+#### 6. Allow your EC2 instance to visit the RDS instance
+
+AWS RDS instance allows visits from permitted security groups. So after my EC2 instance is launched, I need to add the security group of my EC2 instance which is running my environment into the inbound rules of the security group of my RDS instance.<br/>
+
+First, go to my RDS instance. Under "Connectivity & security", click on "VPC security groups".
+
+![rds_info](./images/deployment/rds_info.png)
+
+Then, click on "Security Group ID".
+
+![rds_sg](./images/deployment/rds_sg.png)
+
+Inside the console of security group, click on "Edit inbound rules". Add rules so that my EC2 instance can visit the RDS instance. In this case I also add a rule allowing me to visit the RDS instance from my local machine for development purpose.
+
+![rds_sg_inbound_rule](./images/deployment/rds_sg_inbound_rule.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+#### 7. Compile and host Vue.js application
+
+1) First, in the Vue.js application, I need to direct my request to the domain allocated by Elastic Beanstalk for production mode (in this case my server domain is [movienight.us-east-1.elasticbeanstalk.com](movienight.us-east-1.elasticbeanstalk.com)), instead of localhost for dev/test, as I show in the following code:<br/>
+
+`const request = axios.create({`<br/>
+`  baseURL: 'http://movienight.us-east-1.elasticbeanstalk.com/api'`<br/>
+`  // baseURL: 'http://127.0.0.1:5000/api'`<br/>
+`})`
+
+2) Run `npm run build` command in the root folder of my Vue.js application to complie it. This command will generate static files in the `dist` folder. <br/>
+
+3) Open S3 service, create a bucket, set the bucket to "Publicly accessible" by adding the following bucket policy (remember to replace the "bucket-name" with your actual bucket name):<br/>
+
+`{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::bucket-name/*"
+        }
+    ]
+}`
+
+4) Upload the contents in `dist` folder into the S3 bucket.<br/>
+
+5) Click on the "Properties" tab in the bucket console, scroll down to the bottom and find "Static website hosting". Click on "Edit" and configure it as the picture below shows. This will generate an URL for the website. In this case, my url is [http://movietonight.s3-website-us-east-1.amazonaws.com](http://movietonight.s3-website-us-east-1.amazonaws.com).
+
+**Now, click on the url, you should see you application run perfectly!**
+
+![S3_web_hosting](./images/deployment/S3_web_hosting.png)
+
+![S3_web_url](./images/deployment/S3_web_url.png)
+
+#### 8. Trouble Shooting
+
+If you keep getting errors from Elastic Beanstalk in the process of launching the environment, consider the following aspects:<br/>
+
+1. The permission of your RDS instance
+2. The compatibility of the platform (e.g. Running Java 11 application in Java 8 platform will lead to failure)
+3. Domain and port configuration
+
+If the error message is not available, try to connect to your EC2 instance directly and run the command of lauching the Spring Boot JAR file on that machine: `java -jar /opt/elasticbeanstalk/deployment/app_source_bundle to /var/app/staging/application.jar`. Run the command and see what response you get. Follow the steps shown in pictures below.
+
+![EC2_info](./images/deployment/EC2_info.png)
+
+![connect_EC2](./images/deployment/connect_EC2.png)
+
+![EC2_VM_command](./images/deployment/EC2_VM_command.png)
+
 
 <!-- CONTRIBUTING -->
 <a name="contributing"></a>
