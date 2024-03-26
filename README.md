@@ -97,7 +97,10 @@ The interface is intended to be in the responsive style and should fit different
 
 <a name="deployment"></a>
 ## Deployment
-### 1. Export local database
+
+I'm going to deploy my application on AWS Elastic Beanstalk, which will use other AWS service including RDS, EC2 and Route53.
+
+#### 1. Export local database
 
 Use the `pg_dump` tool to export your local PostgreSQL database. This command will generate a SQL script file containing the database structure and data.
 
@@ -114,7 +117,7 @@ pg_dump -U <local_username> -W -F c -b -v -f "<output_file_path>" <database_name
 This command will prompt you for the password for your local database.
 
 
-### 2. Import to RDS instance
+#### 2. Import to RDS instance
 
 Next, use the `pg_restore` tool to import the exported data into an Amazon RDS instance. You need to be able to connect to the RDS instance from your local machine.
 
@@ -130,6 +133,17 @@ pg_restore -U <rds_username> -h <rds_endpoint> -p 5432 -d <rds_database_name> -v
 - `<input_file_path>` is the previously exported file path, for example `/path/to/your/db_backup.dump`.
 
 This command will prompt you to enter the password for the RDS instance.
+
+#### 3. Compile Vue.js application
+
+Run `npm run build` command to complie the Vue.js application. This command will generate static files. Put static files into the `src/main/resources/static` folder of my Spring Boot application.
+
+#### 4. Compile Spring Boot application
+
+Run 'mvn clean package' command to generate a JAR file for the application. This JAR file is generated in `target` folder and will be uploaded to AWS EC2 for my server hosting.
+
+#### 5. Create Application on AWS Elastic Beanstalk
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
