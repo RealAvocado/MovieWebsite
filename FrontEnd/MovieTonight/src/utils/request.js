@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const request = axios.create({
-  baseURL: 'http://127.0.0.1:8080/api'
+  baseURL: 'http://movienight.us-east-1.elasticbeanstalk.com/api'
+  // baseURL: 'http://127.0.0.1:5000/api'
 })
 
 request.interceptors.request.use(config => {
