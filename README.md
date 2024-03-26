@@ -15,12 +15,10 @@
 <p align="left"><a href="#appendix">Appendix</a></p>
 <br>
 
-Please temporarily use the dummy account below to log into the website: [http://movietonight.s3-website-us-east-1.amazonaws.com](http://movietonight.s3-website-us-east-1.amazonaws.com).<br/> 
+**Please temporarily use the dummy account**: username: "david@outlook.com",
+password: "123456" to **log into the website**: [http://movietonight.s3-website-us-east-1.amazonaws.com](http://movietonight.s3-website-us-east-1.amazonaws.com).<br/> 
 
-username: "david@outlook.com"<br/>
-password: "123456"<br/>
-
-Thank you for your interest!
+**More functions of this website will be realized in the future. Thank you for your interest!**
 
 <!-- ABOUT THE PROJECT -->
 <a name="about-project"></a>
